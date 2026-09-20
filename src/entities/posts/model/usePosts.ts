@@ -1,8 +1,6 @@
-import { type UserPosts } from "@/entities/posts/model/useWallStore";
 import { useQuery } from "@tanstack/react-query";
 import { supabaseFetch } from "@/shared/api";
-
-
+import type { UserPosts } from "@/entities/posts/model/types";
 
 export const useFetchPosts = () => {
   return useQuery<UserPosts[]>({

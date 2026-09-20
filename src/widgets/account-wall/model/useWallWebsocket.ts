@@ -1,4 +1,4 @@
-import type { UserPosts } from "@/entities/posts/model/useWallStore";
+import type { UserPosts } from "@/entities/posts/model/types";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 

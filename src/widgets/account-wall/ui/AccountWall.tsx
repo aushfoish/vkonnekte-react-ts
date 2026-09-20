@@ -1,7 +1,6 @@
 import { postsHeaderLastSignCheck } from "@/entities/posts/lib/WallHeaderLastSignCheck";
 import { AddPostForm } from "@/features/create-post/ui/AddPostForm";
 import { Micro_header } from "@/entities/posts";
-
 import styles from "./AccountWall.module.scss";
 import { useFetchPosts } from "@/entities/posts/model/usePosts";
 import { SkeletonWall } from "@/shared/ui/SkeletonMainPage/SkeletonWall";

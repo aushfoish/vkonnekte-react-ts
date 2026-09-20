@@ -1,4 +1,4 @@
-import type { UserPosts } from "@/entities/posts/model/useWallStore";
+import type { UserPosts } from "@/entities/posts/model/types";
 import style from "./AdminPostsTableItem.module.scss";
 
 export const AdminPostsTableItem = (props: UserPosts) => {
