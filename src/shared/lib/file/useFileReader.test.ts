@@ -24,7 +24,7 @@ describe("handleFileReader", () => {
     const result = await handleFileReader(mockEvent, "jpg", 100, 100);
 
     expect(mockInput.value).toBe(""); 
-    expect(result).toBe(false);
+    expect(result).toBe(null);
   });
 
   it("должен вернуть строку со сжатым изображением, если файл валидный", async () => {
