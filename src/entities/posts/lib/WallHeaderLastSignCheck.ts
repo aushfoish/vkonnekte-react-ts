@@ -1,4 +1,4 @@
-import type { UserPosts } from "@/entities/posts/model/useWallStore";
+import type { UserPosts } from "@/entities/posts/model/types";
 
 export const postsHeaderLastSignCheck = (posts: UserPosts[] | undefined) => {
     if (posts !== null) {

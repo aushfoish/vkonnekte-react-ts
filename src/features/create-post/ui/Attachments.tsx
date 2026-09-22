@@ -1,4 +1,3 @@
-import { useWallStore } from "@/entities/posts/model/useWallStore";
 import { Button } from "@/shared/ui";
 import { AudioButton } from "@/shared/ui/IconBtn";
 import { motion } from "framer-motion";
@@ -6,11 +5,11 @@ import styles from './CreatePost.module.scss'
 
 interface AttachmentsProps {
   setCanvasOpen: () => void;
+  isLoading: boolean
 }
 export const Attachments = (props: AttachmentsProps) => {
-  const { setCanvasOpen } = props;
+  const { setCanvasOpen, isLoading } = props;
 
-  const isSending = useWallStore((state) => state.isSending);
 
   return (
     <motion.div
@@ -20,7 +19,7 @@ export const Attachments = (props: AttachmentsProps) => {
       exit={{ opacity: 0, height: 0 }}
       style={{ overflow: "hidden" }}
     >
-      <Button type="submit" className={styles.post} isLoading={isSending} children="Опубликовать" />
+      <Button type="submit" className={styles.post} isLoading={isLoading} children="Опубликовать" />
       <fieldset className={styles.postAttachments} aria-label="Вложения к посту">
         <AudioButton
           type="button"

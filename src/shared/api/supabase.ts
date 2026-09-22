@@ -9,8 +9,6 @@ export const supabaseFetch = async (endpoint: string, options: RequestInit = {})
     ...options.headers,
   };
 
-  // Если ссылка ПУБЛИЧНАЯ и уже содержит твой префикс проекта, 
-  // мы берём её целиком БЕЗ каких-либо склеек и модификаций!
   const cleanUrl = endpoint.startsWith('http') 
     ? endpoint 
     : `${API_URL}/${endpoint.replace(/^\//, '')}`;

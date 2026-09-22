@@ -21,10 +21,10 @@ describe("handleFileReader", () => {
       currentTarget: mockInput,
     } as React.ChangeEvent<HTMLInputElement>;
 
-    const result = await handleFileReader(mockEvent, "avatar", "jpg", 100, 100);
+    const result = await handleFileReader(mockEvent, "jpg", 100, 100);
 
     expect(mockInput.value).toBe(""); 
-    expect(result).toBe(false);
+    expect(result).toBe(null);
   });
 
   it("должен вернуть строку со сжатым изображением, если файл валидный", async () => {
@@ -42,7 +42,7 @@ describe("handleFileReader", () => {
 
     vi.mocked(imageCompression).mockResolvedValue("mock_base64_string");
 
-    const result = await handleFileReader(mockEvent, "avatar", "jpg", 100, 100);
+    const result = await handleFileReader(mockEvent, "jpg", 100, 100);
 
     expect(result).toBe("mock_base64_string");
     expect(mockInput.value).toBe("C:\\fakepath\\mini.jpg"); // Строка с файлом осталась

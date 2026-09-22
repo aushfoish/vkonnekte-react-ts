@@ -33,7 +33,7 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
 
   const onUploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setPicUploading(true);
-    const userpicUrl = await handleFileReader(e, "userpic", "jpg", 40, 40);
+    const userpicUrl = await handleFileReader(e, "jpg", 40, 40);
     if (typeof userpicUrl === "string") {
       setUserpic(userpicUrl);
       if (error) setError(false);

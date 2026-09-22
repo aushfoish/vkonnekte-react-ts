@@ -2,11 +2,10 @@ import { imageCompression } from "@/shared/api/compressImage";
 
 export const handleFileReader = (
   e: React.ChangeEvent<HTMLInputElement>,
-  useScenario: string,
   extesnion: string,
   width: number,
   height: number,
-): Promise<string | boolean> => {
+): Promise<string | null> => {
   return new Promise((resolve) => {
     const files = e.currentTarget.files;
 
@@ -17,7 +16,7 @@ export const handleFileReader = (
 
       if (file.size > maxSize) {
         e.currentTarget.value = "";
-        resolve(false);
+        resolve(null);
       } else {
         const reader = new FileReader();
         reader.onload = async () => {
@@ -26,7 +25,6 @@ export const handleFileReader = (
               const picToCompress = reader.result;
               const result = await imageCompression(
                 picToCompress,
-                useScenario,
                 extesnion,
                 width,
                 height,
@@ -37,10 +35,10 @@ export const handleFileReader = (
                 "Ошибка при сжатии изображения:",
                 error instanceof Error,
               );
-              resolve(false);
+              resolve(null);
             }
           } else {
-            resolve(false);
+            resolve(null);
           }
         };
 
