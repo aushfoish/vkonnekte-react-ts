@@ -5,7 +5,7 @@ import { useDeletePost } from "@/entities/posts/model/useDeletePost";
 
 export const AdminPostsTable = () => {
   const { data: posts = [] } = useFetchPosts();
-  const {mutate: deletePost, isPending} = useDeletePost()
+  const {mutate: deletePost} = useDeletePost()
 
   return (
     <div className={style.postsTable}>

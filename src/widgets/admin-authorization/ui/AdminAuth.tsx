@@ -13,9 +13,9 @@ export const AdminAuth = () => {
   useEffect(() => {
     const tokenCheck = localStorage.getItem('access_token')
     if (tokenCheck) {
-      setIsAdmin(true)
+      // setIsAdmin(true)
     }
-  },[] )
+  },[setIsAdmin] )
 
   if (!isAdmin)
     return (
