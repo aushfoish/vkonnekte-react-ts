@@ -26,7 +26,7 @@ export const useSendGraffity = () => {
       };
 
       const response = await supabaseFetch(
-        "https://tyekwqioulapfagzpswr.supabase.co/rest/v1/posts",
+        "/rest/v1/posts",
         {
           method: "POST",
           headers: { Prefer: "return=representation" },
@@ -37,8 +37,8 @@ export const useSendGraffity = () => {
       if (!response.ok)
         throw new Error(`Ошибка создания поста: ${response.status}`);
 
-      const createdPosts = await response.json();
-      return createdPosts as UserPosts;
+      const createdPosts = (await response.json() as UserPosts)
+      return createdPosts
     },
 
     onSuccess: () => {},
@@ -46,7 +46,7 @@ export const useSendGraffity = () => {
       console.error(
         error instanceof Error
           ? error.message
-          : "Иосиф Виссарионович, произошла ЧУДОВИЩНАЯ ошибка!!!",
+          : "Неизвестная ошибка",
         error,
       );
     },

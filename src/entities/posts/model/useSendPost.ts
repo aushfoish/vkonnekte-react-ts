@@ -4,6 +4,8 @@ import { supabaseFetch } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 
 export const useSendPost = () => {
+
+
   return useMutation({
     mutationFn: async (payload: {
       content: string;
@@ -32,15 +34,17 @@ export const useSendPost = () => {
 
       if (!response.ok) throw new Error(`Ошибка: ${response.status}`);
 
-      const createdPosts = await response.json();
-      return createdPosts[0] as UserPosts;
+      const createdPosts = (await response.json() as UserPosts[]);
+      return createdPosts[0];
     },
-    onSuccess: () => {},
+    onSuccess: () => {
+      
+    },
     onError: (error) => {
       console.error(
         error instanceof Error
           ? error.message
-          : "Иосиф Виссарионович, произошла ЧУДОВИЩНАЯ ошибка!!!",
+          : "Неизвестная ошибка",
         error,
       );
     },

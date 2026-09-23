@@ -1,6 +1,7 @@
 import { Button, Input, Loader, Modal_button } from "@/shared/ui";
 import styles from "./Auth.module.scss";
 import { useState } from "react";
+import { signAsAdmin } from "@/entities/user/model/signAsAdmin";
 
 
 interface AdminAuthModule {
@@ -15,9 +16,12 @@ export const AdminAuthModule = (props:AdminAuthModule) => {
   const [password, setPassword] = useState("")
   const [isLogining, setIsLogining] = useState(false)
 
+  
+
   const handleSubmit = () => {
     setIsLogining(true)
-    
+    signAsAdmin(username, password)
+    onClose()
   };
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +31,8 @@ export const AdminAuthModule = (props:AdminAuthModule) => {
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.currentTarget.value);
   };
+
+  
 
   return (
     <form className={styles.authForm} onSubmit={handleSubmit}>
@@ -70,6 +76,7 @@ export const AdminAuthModule = (props:AdminAuthModule) => {
             type="submit"
             className={styles.auth}
             children={isLogining ? <Loader /> : "Войти"}
+            onClick={handleSubmit}
           />
 
           <Modal_button

@@ -1,11 +1,14 @@
-import { SectionRadio } from "@/shared/ui";
+import { Button, SectionRadio } from "@/shared/ui";
 import { useState } from "react";
 import style from './AdminControl.module.scss'
 import { AdminPostsTable } from "@/widgets/admin-table-posts/ui/AdminPostsTable";
 
 export const AdminControl = () => {
   const [cathegory, setCathegory] = useState("посты");
-  
+  const logout = () => {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('refresh_token')
+  }
 
   return (
     <div
@@ -37,6 +40,7 @@ export const AdminControl = () => {
           onChange={() => setCathegory("анкета")}
           value="info"
         />
+        <Button onClick={logout} children='выйти из админки'/>
       </div>
 
       {cathegory === "посты" && <AdminPostsTable />}

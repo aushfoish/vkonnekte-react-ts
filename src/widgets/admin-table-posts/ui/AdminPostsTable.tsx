@@ -1,9 +1,11 @@
 import { useFetchPosts } from "@/entities/posts/model/usePosts";
 import { AdminPostsTableItem } from "@/shared/ui/AdminPostsTableItem";
 import style from './AdminPostsTable.module.scss'
+import { useDeletePost } from "@/entities/posts/model/useDeletePost";
 
 export const AdminPostsTable = () => {
   const { data: posts = [] } = useFetchPosts();
+  const {mutate: deletePost, isPending} = useDeletePost()
 
   return (
     <div className={style.postsTable}>
@@ -16,6 +18,7 @@ export const AdminPostsTable = () => {
           username={post.username}
           userPictureSrc={post.userPictureSrc}
           imageContentSrc={post.imageContentSrc}
+          onDelete={() => deletePost(post.id)}
         />
       ))}
     </div>
