@@ -2,7 +2,7 @@ import type { UserPosts } from "@/entities/posts/model/types";
 import style from "./AdminPostsTableItem.module.scss";
 
 export const AdminPostsTableItem = (props: UserPosts) => {
-  const { id, content, date, username, userPictureSrc, imageContentSrc } =
+  const { id, content, date, username, userPictureSrc, imageContentSrc, onDelete } =
     props;
   return (
     <div className={style.adminPostsTableItem} key={id}>
@@ -24,7 +24,7 @@ export const AdminPostsTableItem = (props: UserPosts) => {
       </div>
       <div className={style.options}>
         <button className={style.option}>[Редактировать]</button>
-        <button className={style.option}>[Удалить]</button>
+        <button className={style.option} onClick={onDelete}>[Удалить]</button>
       </div>
     </div>
   );

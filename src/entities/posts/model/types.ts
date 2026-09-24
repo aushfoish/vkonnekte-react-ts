@@ -5,6 +5,7 @@ export interface UserPosts {
   username: string;
   userPictureSrc: string;
   imageContentSrc: string;
+  onDelete?: () => void
 }
 
 export interface PostToSend {
