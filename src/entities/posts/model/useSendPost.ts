@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 
 export const useSendPost = () => {
 
+
   return useMutation({
     mutationFn: async (payload: {
       content: string;
@@ -21,7 +22,7 @@ export const useSendPost = () => {
       };
 
       const response = await supabaseFetch(
-        "https://tyekwqioulapfagzpswr.supabase.co/rest/v1/posts",
+        "/rest/v1/posts",
         {
           method: "POST",
           headers: {
@@ -33,8 +34,8 @@ export const useSendPost = () => {
 
       if (!response.ok) throw new Error(`Ошибка: ${response.status}`);
 
-      const createdPosts = await response.json();
-      return createdPosts[0] as UserPosts;
+      const createdPosts = (await response.json() as UserPosts[]);
+      return createdPosts[0];
     },
     onSuccess: () => {
       
@@ -43,7 +44,7 @@ export const useSendPost = () => {
       console.error(
         error instanceof Error
           ? error.message
-          : "Иосиф Виссарионович, произошла ЧУДОВИЩНАЯ ошибка!!!",
+          : "Неизвестная ошибка",
         error,
       );
     },

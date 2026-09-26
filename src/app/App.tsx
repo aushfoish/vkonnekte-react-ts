@@ -1,8 +1,8 @@
 import "./App.css";
 import {
-  createHashRouter,
   RouterProvider,
   Navigate,
+  createBrowserRouter,
 } from "react-router-dom";
 
 
@@ -14,7 +14,7 @@ import { AdminPage } from "@/pages/admin";
 
 
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,

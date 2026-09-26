@@ -63,7 +63,7 @@ export const useWallWebsocket = () => {
         if (type === "INSERT" && payload?.data?.record) {
           const newPost = payload.data.record as UserPosts;
           queryClient.setQueryData<UserPosts[]>(
-            ["profileWallPosts"],
+            ["posts"],
             (oldPosts) => {
               if (!oldPosts) return [newPost];
               return [newPost, ...oldPosts];
@@ -73,7 +73,7 @@ export const useWallWebsocket = () => {
           const oldRecordID = payload?.data?.old_record.id;
           if (oldRecordID !== undefined && oldRecordID !== null) {
             queryClient.setQueryData<UserPosts[]>(
-              ["profileWallPosts"],
+              ["posts"],
               (oldpPosts) => {
                 if (!oldpPosts) return [];
                 return oldpPosts.filter((post) => post.id !== oldRecordID);
