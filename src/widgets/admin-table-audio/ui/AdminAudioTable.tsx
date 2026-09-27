@@ -1,17 +1,23 @@
-// export const AdminAudioTable = () => {
-//     return (
-//         <div className={style.postsTable}>
-//       {posts.map((post) => (
-//         <AdminPostsTableItem
-//           key={post.id}
-//           id={post.id}
-//           content={post.content}
-//           date={post.date}
-//           username={post.username}
-//           userPictureSrc={post.userPictureSrc}
-//           imageContentSrc={post.imageContentSrc}
-//         />
-//       ))}
-//     </div>
-//     )
-// }
+import { useFetchMusic } from "@/entities/mp3-player/model/useFetchMusic"
+import { AdminMusicTableItem } from "@/shared/ui/AdminMusicTableItem"
+import styles from './AdminPostsTable.module.scss'
+
+export const AdminAudioTable = () => {
+    const {data: playlist = []} = useFetchMusic()
+
+    return (
+        <>
+            <div className={styles.postsTable}>
+                {playlist.map((track) => (
+                    <AdminMusicTableItem 
+                        id={track.id}
+                        band={track.band}
+                        title={track.title}
+                        src={track.src}
+                        duration={track.duration}
+                        />
+                ))}
+            </div>
+        </>
+    )
+}

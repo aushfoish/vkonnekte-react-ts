@@ -16,6 +16,8 @@ interface useAuthStore {
   authCheck: () => void;
   anonymous: () => void;
   userIsLogged: boolean;
+  userIsAdmin: boolean;
+  admin: () => void
 }
 
 export const useAuthStore = create<useAuthStore>((set) => ({
@@ -23,6 +25,7 @@ export const useAuthStore = create<useAuthStore>((set) => ({
   userName: "",
   userPic: "",
   userIsLogged: false,
+  userIsAdmin: false,
 
   authorization: (username, userpic) => {
     set({ userName: username, userPic: userpic, userIsLogged: true });
@@ -74,4 +77,13 @@ export const useAuthStore = create<useAuthStore>((set) => ({
       userIsLogged: false,
     });
   },
+
+  admin: () => {
+    const adminToken = localStorage.getItem('access_token')
+    if (adminToken) {
+      set({userIsAdmin: true})
+    } else {
+      set({userIsAdmin: false})
+    }
+  }
 }));

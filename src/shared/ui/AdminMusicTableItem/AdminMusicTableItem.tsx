@@ -7,9 +7,9 @@ export const AdminMusicTableItem = (props: userMusic) => {
   return (
   <div className={styles.adminMusicTableItem} id={id}>
     <div className={styles.meta}>
-        <div className="band">{band}</div>
-        <div className="name">{title}</div>
-        <div className="src">{src}</div>
+        <div className={styles.band}>{band}</div>
+        <div className={styles.title}>{title}</div>
+        <a className="src" href={src}>[ссылка]</a>
         <div className="duration">{duration}</div>
     </div>
     <div className={styles.options}>
