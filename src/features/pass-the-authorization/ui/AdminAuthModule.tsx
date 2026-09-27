@@ -3,25 +3,20 @@ import styles from "./Auth.module.scss";
 import { useState } from "react";
 import { signAsAdmin } from "@/entities/user/model/signAsAdmin";
 
-
 interface AdminAuthModule {
-    onClose: () => void
+  onClose: () => void;
 }
 
-export const AdminAuthModule = (props:AdminAuthModule) => {
-    const {onClose} = props
-    // const login = "dakota775"
-    // const pass = "zxc123"
+export const AdminAuthModule = (props: AdminAuthModule) => {
+  const { onClose } = props;
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("")
-  const [isLogining, setIsLogining] = useState(false)
-
-  
+  const [password, setPassword] = useState("");
+  const [isLogining, setIsLogining] = useState(false);
 
   const handleSubmit = () => {
-    setIsLogining(true)
-    signAsAdmin(username, password)
-    onClose()
+    setIsLogining(true);
+    signAsAdmin(username, password);
+    onClose();
   };
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +27,6 @@ export const AdminAuthModule = (props:AdminAuthModule) => {
     setPassword(e.currentTarget.value);
   };
 
-  
 
   return (
     <form className={styles.authForm} onSubmit={handleSubmit}>

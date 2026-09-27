@@ -4,7 +4,8 @@
     .meta {
         display: flex;
         flex-direction: row;
-        .band, title {
+        justify-content: space-between;
+        .band, .title {
             font-size: 10px;
             color: var(--color-blue)
         }
