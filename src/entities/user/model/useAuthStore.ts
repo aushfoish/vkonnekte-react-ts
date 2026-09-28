@@ -31,6 +31,7 @@ export const useAuthStore = create<useAuthStore>((set) => ({
   userPic: "",
   userIsLogged: false,
   userIsAdmin: false,
+
   isUserLoggining: false,
 
   authorization: (username, userpic) => {
@@ -98,15 +99,15 @@ export const useAuthStore = create<useAuthStore>((set) => ({
       });
 
       if (response.status === 403) {
-        deleteToken()
-        set({userIsAdmin: false, isUserLoggining: false})
+        deleteToken();
+        set({ userIsAdmin: false, isUserLoggining: false });
       }
 
       if (response.status === 401) {
         const refresh = await refreshToken();
         if (refresh === false) {
-          deleteToken()
-          set({ userIsAdmin: false, isUserLoggining: false})
+          deleteToken();
+          set({ userIsAdmin: false, isUserLoggining: false });
         }
         if (refresh === true) {
           set({ userIsAdmin: true, isUserLoggining: false });
