@@ -1,7 +1,7 @@
-import type { UserPosts } from "@/entities/posts/model/types";
 import style from "./AdminPostsTableItem.module.scss";
+import type { PostCardProps } from "@/shared/api/schemas/userPostSchema";
 
-export const AdminPostsTableItem = (props: UserPosts) => {
+export const AdminPostsTableItem = (props: PostCardProps) => {
   const { id, content, date, username, userPictureSrc, imageContentSrc, onDelete } =
     props;
   return (
