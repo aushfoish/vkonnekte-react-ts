@@ -27,6 +27,7 @@ export const AdminAuthModule = (props: AdminAuthModule) => {
     setPassword(e.currentTarget.value);
   };
 
+
   return (
     <form className={styles.authForm} onSubmit={handleSubmit}>
       <div className={styles.inputsContainer}>

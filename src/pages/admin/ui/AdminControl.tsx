@@ -2,6 +2,7 @@ import { Button, SectionRadio } from "@/shared/ui";
 import { useState } from "react";
 import style from './AdminControl.module.scss'
 import { AdminPostsTable } from "@/widgets/admin-table-posts/ui/AdminPostsTable";
+import { AdminAudioTable } from "@/widgets/admin-table-audio/ui/AdminAudioTable";
 
 export const AdminControl = () => {
   const [cathegory, setCathegory] = useState("посты");
@@ -44,6 +45,7 @@ export const AdminControl = () => {
       </div>
 
       {cathegory === "посты" && <AdminPostsTable />}
+      {cathegory === "музыка" && <AdminAudioTable />}
       
       
     </div>

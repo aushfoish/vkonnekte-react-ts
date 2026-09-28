@@ -11,3 +11,5 @@ export const AdminPage = () => {
 
   if (!isAdmin) return <AdminAuthModule onClose={() => nav(-1)} />;
 };
+
+export default AdminPage
