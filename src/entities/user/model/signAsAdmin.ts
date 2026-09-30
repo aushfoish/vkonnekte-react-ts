@@ -1,3 +1,5 @@
+import { RefreshTokenSchema } from "@/shared/api/schemas/refreshTokenSchema";
+
 const API_URL = import.meta.env.VITE_SUPABASE_URL
 const API_KEY = import.meta.env.VITE_SUPABASE_PUBLIC_KEY; 
 
@@ -13,9 +15,8 @@ export const signAsAdmin = async (email: string, password: string) => {
 
     if (!response.ok) throw new Error("Ошибка авторизации")
 
-        const data = await response.json()
+        const data = RefreshTokenSchema.parse(await response.json())
         localStorage.setItem('access_token', data.access_token);
         localStorage.setItem('refresh_token', data.refresh_token);
-        
         return data
 }

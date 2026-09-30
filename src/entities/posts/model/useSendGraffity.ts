@@ -1,6 +1,7 @@
-import type { UserPosts, PostToSend } from "@/entities/posts/model/types";
 import { useAuthStore } from "@/entities/user/model/useAuthStore";
 import { supabaseFetch } from "@/shared/api";
+import type { postToSend } from "@/shared/api/schemas/postToSendSchema";
+import { UserPostsSchema } from "@/shared/api/schemas/userPostSchema";
 import { uploadPicture } from "@/shared/api/uploadPicture";
 import { useMutation } from "@tanstack/react-query";
 
@@ -18,7 +19,7 @@ export const useSendGraffity = () => {
       const userName = useAuthStore.getState().userName;
       const userPic = useAuthStore.getState().userPic;
 
-      const newPost: PostToSend = {
+      const newPost: postToSend = {
         content: "",
         username: userName,
         userPictureSrc: userPic,
@@ -37,7 +38,7 @@ export const useSendGraffity = () => {
       if (!response.ok)
         throw new Error(`Ошибка создания поста: ${response.status}`);
 
-      const createdPosts = (await response.json() as UserPosts)
+      const createdPosts = UserPostsSchema.parse(await response.json())
       return createdPosts
     },
 
