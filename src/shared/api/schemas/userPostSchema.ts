@@ -15,6 +15,8 @@ export type UserPost = z.infer<typeof UserPostSchema>;
 
 export interface PostCardProps extends UserPost {
     onDelete?: () => void;
+    onEdit?: () => void;
 }
+
 
 export type UserPosts = z.infer<typeof UserPostsSchema>

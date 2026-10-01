@@ -1,6 +1,6 @@
-import type { UserPosts } from "@/entities/posts/model/types";
+import type { UserPosts } from "@/shared/api/schemas/userPostSchema";
 
-export const postsHeaderLastSignCheck = (posts: UserPosts[] | undefined) => {
+export const postsHeaderLastSignCheck = (posts: UserPosts | undefined) => {
     if (posts !== null) {
       const arrayLengthLastsign = String(posts?.length).slice(-1);
       const forA = ["2", "3", "4"];
