@@ -18,11 +18,5 @@ export interface PostCardProps extends UserPost {
     onEdit?: () => void;
 }
 
-// export interface PostToSend = z.object({
-//   content: z.string(),
-//   username: z.string(),
-//   userPictureSrc: z.string(),
-//   imageContentSrc: z.string(),
-// })
 
 export type UserPosts = z.infer<typeof UserPostsSchema>

@@ -6,7 +6,6 @@ import { useEditPost } from "@/entities/posts/model/useEditPost";
 export const AdminPostsTableItem = (props: PostCardProps) => {
   const { id, content, date, username, userPictureSrc, imageContentSrc, onDelete } =
     props;
-
     const [onEdit, setOnEdit] = useState(false)
     const [newValue, setNewValue] = useState('')
     const {mutate: editPost} = useEditPost()
