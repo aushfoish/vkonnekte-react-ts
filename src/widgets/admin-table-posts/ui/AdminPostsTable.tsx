@@ -6,7 +6,7 @@ import { useDeletePost } from "@/entities/posts/model/useDeletePost";
 export const AdminPostsTable = () => {
   const { data: posts = [] } = useFetchPosts();
   const {mutate: deletePost} = useDeletePost()
-
+  
   return (
     <div className={style.postsTable}>
       {posts.map((post) => (
@@ -19,6 +19,7 @@ export const AdminPostsTable = () => {
           userPictureSrc={post.userPictureSrc}
           imageContentSrc={post.imageContentSrc}
           onDelete={() => deletePost(post.id)}
+          
         />
       ))}
     </div>

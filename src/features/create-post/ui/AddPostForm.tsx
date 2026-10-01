@@ -1,9 +1,9 @@
-import { GraffityModal } from "@/features/create-graffity";
+const GraffityModal = lazy(() => import('@/features/create-graffity').then(module => ({default: module.GraffityModal})))
+const ModalWindow = lazy(() => import('@/shared/ui/ModalWindow/ModalWindow').then(module => ({default: module.ModalWindow})))
 import { Input } from "@/shared/ui";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { lazy, useState } from "react";
 import { Attachments } from "./Attachments";
-import { ModalWindow } from "@/shared/ui/ModalWindow/ModalWindow";
 import styles from "./CreatePost.module.scss";
 import { useSendPost } from "@/entities/posts/model/useSendPost";
 

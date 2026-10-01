@@ -1,3 +1,6 @@
+import { deleteToken } from "@/shared/api/deleteToken";
+import { refreshToken } from "@/shared/api/refreshToken";
+
 const API_URL = import.meta.env.VITE_SUPABASE_URL;
 const API_KEY = import.meta.env.VITE_SUPABASE_PUBLIC_KEY;
 
@@ -5,38 +8,6 @@ export const supabaseFetch = async (
   endpoint: string,
   options: RequestInit = {},
 ) => {
-  const refreshToken = async () => {
-    try {
-      const response = await fetch(
-        `${API_URL}/auth/v1/token?grant_type=refresh_token`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Prefer: "return=representation",
-            apikey: API_KEY,
-          },
-          body: JSON.stringify({
-            refresh_token: localStorage.getItem("refresh_token"),
-          }),
-        },
-      );
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem("refresh_token", data.refresh_token);
-        localStorage.setItem("access_token", data.access_token);
-        console.log("токен обновлён");
-        return true;
-      }
-      if (!response.ok) {
-        console.log(`'ошибка обновления токена:' ${response.status}`);
-        return false;
-      }
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
-  };
 
   const cleanUrl = endpoint.startsWith("http")
     ? endpoint
@@ -61,9 +32,7 @@ export const supabaseFetch = async (
         if (isRetry) return response
         const res = await refreshToken();
         if (res === false) {
-          
-            localStorage.removeItem("refresh_token");
-            localStorage.removeItem("access_token");
+            deleteToken()
             token = API_KEY;
             return await dataFetch(true)
           
