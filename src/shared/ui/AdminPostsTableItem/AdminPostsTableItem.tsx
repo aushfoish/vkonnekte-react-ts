@@ -10,6 +10,7 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
     const [newValue, setNewValue] = useState('да...')
     const {mutate: editPost} = useEditPost()
 
+
   return (
     <div className={style.adminPostsTableItem} key={id}>
       <div className={style.meta}>
@@ -29,6 +30,7 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
         </>
         <>
           {onEdit && (<input onChange={(e) => setNewValue(e.currentTarget.value)}/>)}
+
         </>
         <div className={style.postDate}>{date}</div>
       </div>

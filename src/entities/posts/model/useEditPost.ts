@@ -27,6 +27,7 @@ export const useEditPost = () => {
       return createdPosts;
     },
     onSuccess: () => {},
+
     onError: (error) => {
       console.error(
         error instanceof Error
