@@ -1,4 +1,4 @@
-import type { UserPosts } from "@/entities/posts/model/wallStoreSchema";
+import { UserPostSchema, type UserPosts } from "@/shared/api/schemas/userPostSchema";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 
@@ -12,7 +12,6 @@ export const useWallWebsocket = () => {
 
     const API_KEY = import.meta.env.VITE_SUPABASE_WEBSOCKET;
 
-    // Возвращаем твой старый проверенный формат строки, только с новой переменной и протоколом v1, как было изначально!
     const wsUrl = `wss://tyekwqioulapfagzpswr.supabase.co/realtime/v1/websocket?apikey=${API_KEY}&vsn=1.0.0`;
 
     ws = new WebSocket(wsUrl);
@@ -61,8 +60,8 @@ export const useWallWebsocket = () => {
         const type = response.payload?.data?.type || response.payload?.type;
 
         if (type === "INSERT" && payload?.data?.record) {
-          const newPost = payload.data.record as UserPosts;
-          queryClient.setQueryData<UserPosts[]>(
+          const newPost = UserPostSchema.parse(payload.data.record);
+          queryClient.setQueryData<UserPosts>(
             ["posts"],
             (oldPosts) => {
               if (!oldPosts) return [newPost];
@@ -72,7 +71,7 @@ export const useWallWebsocket = () => {
         } else if (type === "DELETE") {
           const oldRecordID = payload?.data?.old_record.id;
           if (oldRecordID !== undefined && oldRecordID !== null) {
-            queryClient.setQueryData<UserPosts[]>(
+            queryClient.setQueryData<UserPosts>(
               ["posts"],
               (oldpPosts) => {
                 if (!oldpPosts) return [];
