@@ -7,8 +7,10 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
   const { id, content, date, username, userPictureSrc, imageContentSrc, onDelete } =
     props;
     const [onEdit, setOnEdit] = useState(false)
-    const [newValue, setNewValue] = useState('')
+    const [newValue, setNewValue] = useState('да...')
     const {mutate: editPost} = useEditPost()
+
+
   return (
     <div className={style.adminPostsTableItem} key={id}>
       <div className={style.meta}>
@@ -27,7 +29,8 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
           {content && (<div className={style.postText}>{content}</div>)}
         </>
         <>
-          {onEdit && (<input defaultValue={newValue} onChange={() => setNewValue}/>)}
+          {onEdit && (<input onChange={(e) => setNewValue(e.currentTarget.value)}/>)}
+
         </>
         <div className={style.postDate}>{date}</div>
       </div>
@@ -38,7 +41,7 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
       {onEdit && (<div className={style.options}>
         <button className={style.option} onClick={
           () => {
-            editPost(id)
+            editPost({id: id, content: newValue})
             setOnEdit(false)
           }
           }>✅</button>
