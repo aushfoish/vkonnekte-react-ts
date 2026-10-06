@@ -1,1 +1,1 @@
-export { AdminPostsTableItem } from "@/shared/ui/AdminPostsTableItem/AdminPostsTableItem";
+export { AdminPostsTableItem } from "@/features/admin-tab-post-item/ui/AdminPostsTableItem";

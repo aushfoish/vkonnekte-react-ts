@@ -1,15 +1,16 @@
 import { supabaseFetch } from "@/shared/api";
-import { UserPostsSchema } from "@/shared/api/schemas/userPostSchema";
-import { useMutation } from "@tanstack/react-query";
+import { UserPostsSchema, type UserPost } from "@/shared/api/schemas/userPostSchema";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useEditPost = () => {
+  const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (payload: {
-      id: number, 
-      content: string
-    }) => {
+    mutationFn: async (payload: Partial<UserPost> & {id: number}) => {
       const updatedPost = {
         content: payload.content,
+        username: payload.username,
+        userPictureSrc: payload.userPictureSrc,
+        imageContentSrc: payload.imageContentSrc
       };
 
       const response = await supabaseFetch(`/rest/v1/posts?id=eq.${payload.id}`, {
@@ -26,7 +27,9 @@ export const useEditPost = () => {
       const createdPosts = UserPostsSchema.parse(await response.json())
       return createdPosts;
     },
-    onSuccess: () => {},
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
 
     onError: (error) => {
       console.error(

@@ -1,0 +1,47 @@
+.adminPostsTableItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    .userinf {
+      display: flex;
+      flex-direction: column;
+      .userpic {
+        font-size: 10px;
+        color: rgb(78, 125, 191);
+      }
+      .username {
+        font-size: 10px;
+        color: var(--color-black);
+      }
+    };
+    .imageSrc {
+        font-size: 10px;
+        color: rgb(78, 125, 191);
+    };
+    .postText,
+    .postDate {
+      font-size: 10px;
+      color: var(--color-blue);
+    }
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    .option {
+      background-color: transparent;
+      border: 1px solid transparent;
+      font-size: 7px;
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+  }
+}
