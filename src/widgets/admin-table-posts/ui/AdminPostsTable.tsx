@@ -1,7 +1,7 @@
 import { useFetchPosts } from "@/entities/posts/model/usePosts";
-import { AdminPostsTableItem } from "@/shared/ui/AdminPostsTableItem";
 import style from './AdminPostsTable.module.scss'
 import { useDeletePost } from "@/entities/posts/model/useDeletePost";
+import { AdminPostsTableItem } from "@/features/admin-tab-post-item";
 
 export const AdminPostsTable = () => {
   const { data: posts = [] } = useFetchPosts();
