@@ -27,20 +27,21 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
     });
   };
 
+  const handleInput = (field: keyof EditState["values"], value: string) => {
+    setEditState((prev) => ({
+      ...prev,
+      values: { ...prev.values, [field]: value },
+    }));
+  };
+
   return (
     <div className={style.adminPostsTableItem} key={id}>
       <div className={style.meta}>
         <div className={style.userinf}>
           {editState.isEditing ? (
             <input
-              value={editState.values.username ?? ''}
-              onChange={(e) => {
-                const value = e.currentTarget.value
-                setEditState((prev) => ({
-                  ...prev,
-                  values: { ...prev.values, username: value },
-                }));
-              }}
+              value={editState.values.username ?? ""}
+              onChange={(e) => handleInput("username", e.currentTarget.value)}
             ></input>
           ) : (
             <div className={style.username}>{username}</div>
@@ -48,17 +49,8 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
 
           {editState.isEditing ? (
             <input
-              value={editState.values.userPictureSrc ?? ''}
-              onChange={(e) => {
-                const value = e.currentTarget.value
-                setEditState((prev) => ({
-                  ...prev,
-                  values: {
-                    ...prev.values,
-                    userPictureSrc: value,
-                  },
-                }));
-              }}
+              value={editState.values.userPictureSrc ?? ""}
+              onChange={(e) => handleInput("userPictureSrc", e.currentTarget.value)}
             ></input>
           ) : (
             <a className={style.userpic} href={userPictureSrc} target="_blank">
@@ -71,16 +63,7 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
           {editState.isEditing ? (
             <input
               value={editState.values.imageContentSrc ?? ""}
-              onChange={(e) => {
-                const value = e.currentTarget.value
-                setEditState((prev) => ({
-                  ...prev,
-                  values: {
-                    ...prev.values,
-                    imageContentSrc: value,
-                  },
-                }));
-              }}
+              onChange={(e) => handleInput("imageContentSrc", e.currentTarget.value)}
             ></input>
           ) : (
             <a
@@ -97,13 +80,7 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
           {editState.isEditing ? (
             <input
               value={editState.values.content ?? ""}
-              onChange={(e) => {
-                const value = e.currentTarget.value
-                setEditState((prev) => ({
-                  ...prev,
-                  values: { ...prev.values, content: value },
-                }));
-              }}
+              onChange={(e) => handleInput("content", e.currentTarget.value)}
             />
           ) : (
             <div className={style.postText}>{content}</div>

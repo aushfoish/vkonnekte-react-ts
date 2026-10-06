@@ -1,20 +1,15 @@
 import { create } from "zustand";
 import { formatTime } from "@/entities/mp3-player/lib/formatTime";
 import type { ChangeEvent } from "react";
+import type { FullMusicItemSchema } from "@/shared/api/schemas/musicItemSchema";
 
-export interface userMusic {
-  id: string;
-  band: string;
-  title: string;
-  src: string;
-  duration?: string;
-}
+
 
 export interface userPlaylistState {
   isLoading: boolean;
-  trackPlay: (track: userMusic) => Promise<void>;
+  trackPlay: (track: FullMusicItemSchema) => Promise<void>;
   isPlaying: boolean;
-  currentTrack: userMusic | null;
+  currentTrack: FullMusicItemSchema | null;
   togglePlay: () => void;
   volume: number;
   setVolume: (e: ChangeEvent<HTMLInputElement>) => void;
