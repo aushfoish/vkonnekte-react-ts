@@ -1,6 +1,6 @@
 import { useFetchMusic } from "@/entities/mp3-player/model/useFetchMusic"
-import { AdminMusicTableItem } from "@/shared/ui/AdminMusicTableItem"
 import styles from './AdminPostsTable.module.scss'
+import { AdminMusicTableItem } from "@/features/admin-tab-mp3-item"
 
 export const AdminAudioTable = () => {
     const {data: playlist = []} = useFetchMusic()

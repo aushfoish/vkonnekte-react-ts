@@ -1,11 +1,11 @@
-import type { userMusic } from "@/entities/mp3-player/model/useMusicStore";
+import type { FullMusicItemSchema } from '@/shared/api/schemas/musicItemSchema';
 import styles from './AdminMusicTableItem.module.scss'
 
-export const AdminMusicTableItem = (props: userMusic) => {
+export const AdminMusicTableItem = (props: FullMusicItemSchema) => {
   const { id, band, title, src, duration } = props;
 
   return (
-  <div className={styles.adminMusicTableItem} id={id}>
+  <div className={styles.adminMusicTableItem} key={id}>
     <div className={styles.meta}>
         <div className={styles.band}>{band}</div>
         <div className={styles.title}>{title}</div>
