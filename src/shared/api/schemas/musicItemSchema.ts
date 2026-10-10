@@ -17,4 +17,9 @@ export const FullMusicItemSchema = MusicItemSchema.extend({
 
 export type FullMusicItemSchema = z.infer<typeof FullMusicItemSchema>
 
+export interface FullMusicItemSchemaProps extends FullMusicItemSchema {
+  onDelete?: () => void,
+  onEdit?: () => void
+}
+
 export type Playlist = z.infer<typeof MusicItemsSchema>

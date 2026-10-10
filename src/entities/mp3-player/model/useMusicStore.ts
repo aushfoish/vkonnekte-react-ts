@@ -105,16 +105,6 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
     set({ currentTrackTime: audio.currentTime });
   },
 
-  // indexCheck: () => {
-  //     const {currentTrack, playlist} = get()
-
-  //     const trackIndex = playlist?.map((track, index) => {
-  //         if (currentTrack?.id === track.id) {
-  //             set({currentTrackIndex: index})
-  //         }
-
-  //     })
-  // },
 
   nextTrack: () => {
     const { currentTrackIndex } = get();
