@@ -50,7 +50,9 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
           {editState.isEditing ? (
             <input
               value={editState.values.userPictureSrc ?? ""}
-              onChange={(e) => handleInput("userPictureSrc", e.currentTarget.value)}
+              onChange={(e) =>
+                handleInput("userPictureSrc", e.currentTarget.value)
+              }
             ></input>
           ) : (
             <a className={style.userpic} href={userPictureSrc} target="_blank">
@@ -63,7 +65,9 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
           {editState.isEditing ? (
             <input
               value={editState.values.imageContentSrc ?? ""}
-              onChange={(e) => handleInput("imageContentSrc", e.currentTarget.value)}
+              onChange={(e) =>
+                handleInput("imageContentSrc", e.currentTarget.value)
+              }
             ></input>
           ) : (
             <a
