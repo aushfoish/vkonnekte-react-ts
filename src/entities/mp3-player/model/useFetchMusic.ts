@@ -6,7 +6,7 @@ import { FullMusicItemSchema, MusicItemsSchema } from "@/shared/api/schemas/musi
 
 export const useFetchMusic = () => {
   return useQuery<FullMusicItemSchema[]>({
-    queryKey: ["profilePlaylist"],
+    queryKey: ["tracks"],
     queryFn: async () => {
       const playlistRes = await supabaseFetch(
         "https://tyekwqioulapfagzpswr.supabase.co/rest/v1/tracks", {
