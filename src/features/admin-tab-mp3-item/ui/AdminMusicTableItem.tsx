@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useEditTrack } from "@/entities/mp3-player/model/useEditTrack";
 
 export const AdminMusicTableItem = (props: FullMusicItemSchemaProps) => {
-  const { id, band, title, src, duration, onDelete } = props;
+  const { id, band, title, src, onDelete } = props;
   const {mutate: editTrack} = useEditTrack()
   const [editState, setEditState] = useState<Mp3EditState>({
       isEditing: false,
@@ -42,10 +42,8 @@ export const AdminMusicTableItem = (props: FullMusicItemSchemaProps) => {
 
         {editState.isEditing 
           ? (<input value={editState.values.src} onChange={(e) => handleInput("src", e.currentTarget.value)}></input>) 
-          : <a className="src" href={src}>[ссылка]</a>
+          : <a className={styles.src} href={src}>[ссылка]</a>
         }
-
-        <div className="duration">{duration}</div>
         
       </div>
       {editState.isEditing ? (
