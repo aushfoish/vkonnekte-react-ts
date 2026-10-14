@@ -1,13 +1,28 @@
 .adminMusicTableItem {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-content: center;
     .meta {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        width: 100%;
+        padding-inline: 5px;
+        align-items: center;
         .band, .title {
             font-size: 10px;
-            color: var(--color-blue)
+            color: var(--color-blue);
+            text-align: left;
+            max-width: 100px;
+            width: 100%;
+            
+        }
+        .src {
+            font-size: 10px;
+            color: #4E7DBF;
+            
         }
     }
     .options {
@@ -16,8 +31,9 @@
         .option {
             background-color: transparent;
             border: 1px solid transparent;
-            font-size: 10px;
+            font-size: 7px;
             color: var(--color-primary);
+            cursor: pointer;
         }
     }
 }
