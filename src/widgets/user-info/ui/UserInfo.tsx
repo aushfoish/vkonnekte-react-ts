@@ -19,8 +19,8 @@ export const UserInfo = () => {
   const personalInfo = useSelectPersonal();
   const contactsInfo = useSelectContacts();
   const isHiddenInfoExists =
-    (personalInfo && personalInfo.length > 0) ||
-    (contactsInfo && contactsInfo.length > 0);
+    (personalInfo) ||
+    (contactsInfo);
   const [isOpen, setIsOpen] = useState(false);
   const infoID = useId();
 

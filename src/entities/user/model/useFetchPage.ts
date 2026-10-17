@@ -1,29 +1,5 @@
 import { useFetchProfile } from "@/entities/user/model/useFetchProfile";
-interface Personal {
-  id: number;
-  key: string;
-  value: string;
-  dataset: string;
-}
 
-interface Contacts {
-  id: number;
-  key: string;
-  value: string;
-  dataset: string;
-}
-
-interface birthday {
-  id: number;
-  day: string;
-  year: string;
-  month: string;
-}
-
-interface languages {
-  id: string;
-  language: string;
-}
 
 export interface Friend {
   id: number;
@@ -32,34 +8,19 @@ export interface Friend {
   isOnline: boolean;
 }
 
-export interface user {
-  id: number;
-  firstname: string;
-  lastname: string;
-  bio: string;
-  avatar: string;
-  birthday: birthday;
-  city: string;
-  workplace: string;
-  languages: languages[];
-  contacts: Contacts[];
-  personal: Personal[];
-}
+
 export const useUserProfileData = () => {
-  const { profile } = useFetchProfile();
+  const { profile } = useFetchProfile("c849ba0e-1a02-4d1b-8042-01d801e3c7b1");
   return profile
 }
  
 
 
-export const useSelectID = () => useUserProfileData()?.id;
 export const useSelectFirstname = () => useUserProfileData()?.firstname;
 export const useSelectLastname = () => useUserProfileData()?.lastname;
 export const useSelectBio = () => useUserProfileData()?.bio;
 export const useSelectAvatar = () => useUserProfileData()?.avatar;
-export const useBirthDay = () => useUserProfileData()?.birthday.day;
-export const useBirthMonth = () => useUserProfileData()?.birthday.month;
-export const useBirthYear = () => useUserProfileData()?.birthday.year;
+export const useSelectBirthday = () => useUserProfileData()?.birthday
 export const useSelectCity = () => useUserProfileData()?.city;
 export const useSelectWorkplace = () => useUserProfileData()?.workplace;
 export const useSelectLanguages = () => useUserProfileData()?.languages;
