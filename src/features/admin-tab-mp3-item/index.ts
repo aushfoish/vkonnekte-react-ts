@@ -1,0 +1,1 @@
+export { AdminMusicTableItem } from "@/features/admin-tab-mp3-item/ui/AdminMusicTableItem";

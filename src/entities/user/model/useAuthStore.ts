@@ -23,9 +23,11 @@ interface useAuthStore {
   userIsAdmin: boolean;
   isUserLoggining: boolean;
   admin: () => void;
+  ownerId: string;
 }
 
 export const useAuthStore = create<useAuthStore>((set) => ({
+  ownerId: "c849ba0e-1a02-4d1b-8042-01d801e3c7b1",
   uploadedUserpic: "",
   userName: "",
   userPic: "",

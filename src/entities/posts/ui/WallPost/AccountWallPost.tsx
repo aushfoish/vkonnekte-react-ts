@@ -1,61 +1,44 @@
-import React from "react"
-import { PostAuthor } from "./PostAuthor"
-import { PostAuthorPic } from "./PostAuthorPic"
-import { PostText } from "./PostText"
-import { PostShareAndDate } from "./PostShareDate"
-import styles from './WallPost.module.scss'
-
-
+import React from "react";
+import { PostAuthor } from "./PostAuthor";
+import { PostAuthorPic } from "./PostAuthorPic";
+import { PostText } from "./PostText";
+import { PostShareAndDate } from "./PostShareDate";
+import styles from "./WallPost.module.scss";
 
 export interface AccountWallPostProps {
-  id: number,
-  label: string,
-  date: string
-  imgSrc: string
-  userPicSrc: string
-  text: string
-  alt: string
+  id: number;
+  label: string;
+  date: string;
+  imgSrc: string;
+  userPicSrc: string;
+  text: string;
+  alt: string;
 }
 
-export const AccountWallPost = React.memo((props:AccountWallPostProps) => {
+export const AccountWallPost = React.memo((props: AccountWallPostProps) => {
+  const { id, label, text, date, imgSrc, userPicSrc, alt } = props;
 
-    const {
-      id,
-      label,
-      text,
-      date,
-      imgSrc,
-      userPicSrc,
-      alt
-    } = props
+  return (
+    <div className={styles.postGenuinely} id={String(id)}>
+      <PostAuthorPic src={userPicSrc} alt={`Фотография пользователя ${alt}`} />
 
-    return (
-        <div className={styles.postGenuinely} id={String(id)}>
+      <div className={styles.contentPost}>
+        <PostAuthor label={label} />
 
-                <PostAuthorPic src={userPicSrc} alt={`Фотография пользователя ${alt}`}/>
+        {text && <PostText text={text} id={id} />}
 
-                <div className={styles.contentPost}>
+        {imgSrc && (
+          <img
+            className={styles.contentPicture}
+            src={imgSrc}
+            alt={`Графическое изображение, опубликованное пользователем ${alt}`}
+          ></img>
+        )}
 
-                  <PostAuthor 
-                  label={label}/>
+        <PostShareAndDate date={date} />
+      </div>
+    </div>
+  );
+});
 
-                  {text && (<PostText 
-                  text={text}
-                  id={id}
-                  />)}
-                  
-                  {imgSrc && (<img className={styles.contentPicture} src={imgSrc} alt={`Графическое изображение, опубликованное пользователем ${alt}`}>
-                  </img>)}
-
-                  <PostShareAndDate 
-                  date={date}/>
-                
-                  
-
-                </div>
-            
-        </div>
-    )
-})
-
-AccountWallPost.displayName = "post-genuinely"
+AccountWallPost.displayName = "post-genuinely";

@@ -43,7 +43,7 @@ export const supabaseFetch = async (
         }
       }
       if (!response.ok)
-        throw new Error("неизвестная ошибка при получении данных");
+        throw new Error("неизвестная ошибка при отправке запроса");
       return response;
     } catch (error) {
       console.error(error);

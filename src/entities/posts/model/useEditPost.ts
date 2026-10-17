@@ -1,37 +1,36 @@
 import { supabaseFetch } from "@/shared/api";
-import { type UserPost } from "@/shared/api/schemas/userPostSchema";
-import { useMutation } from "@tanstack/react-query";
+import { UserPostsSchema, type UserPost } from "@/shared/api/schemas/userPostSchema";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useEditPost = () => {
-
-
+  const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (postId: number) => {
-
-
+    mutationFn: async (payload: Partial<UserPost> & {id: number}) => {
       const updatedPost = {
-        postId: postId,
+        content: payload.content,
+        username: payload.username,
+        userPictureSrc: payload.userPictureSrc,
+        imageContentSrc: payload.imageContentSrc
       };
 
-      const response = await supabaseFetch(
-        `/rest/v1/posts?id=eq.${postId}`,
-        {
-          method: "PATCH",
-          headers: {
-            Prefer: "return=representation",
-          },
-          body: JSON.stringify(updatedPost),
+      const response = await supabaseFetch(`/rest/v1/posts?id=eq.${payload.id}`, {
+        method: "PATCH",
+        headers: {
+          Prefer: "return=representation",
         },
-      );
+        body: JSON.stringify(updatedPost),
+      });
 
-      if (!response.ok) throw new Error(`Ошибка при редактировании поста: ${response.status}`);
+      if (!response.ok)
+        throw new Error(`Ошибка при редактировании поста: ${response.status}`);
 
-      const createdPosts = await response.json() as UserPost;
+      const createdPosts = UserPostsSchema.parse(await response.json())
       return createdPosts;
     },
     onSuccess: () => {
-      
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
+
     onError: (error) => {
       console.error(
         error instanceof Error
