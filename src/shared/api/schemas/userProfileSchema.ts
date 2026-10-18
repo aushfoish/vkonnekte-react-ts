@@ -12,8 +12,8 @@ export const UserProfileSchema = z.object({
   city: z.string(),
   languages: z.string(),
   workplace: z.string(),
-  contacts: z.object({city: z.string(), github: z.string(), mobile: z.string(), telegram: z.string()}),
-  personal: z.object({activity: z.string(), hobbies: z.string(), music: z.string(), movies: z.string(), quotes: z.string()})
+  contacts: z.object({city: z.string(), github: z.string(), mobile: z.string(), telegram: z.string()}).nullable(),
+  personal: z.object({activity: z.string(), hobbies: z.string(), music: z.string(), movies: z.string(), quotes: z.string()}).nullable()
 })
 
 export type ProfileItem = z.infer<typeof UserProfileSchema>

@@ -7,15 +7,30 @@ export const useEditProfile = () => {
   return useMutation({
     mutationFn: async (payload: Partial<ProfileItem> & {id: number}) => {
       const updatedProfile = {
+        user_id: payload.user_id,
         firstname: payload.firstname,
         lastname: payload.lastname,
         bio: payload.bio,
         avatar: payload.avatar,
         city: payload.city,
-        workplace: payload.workplace
-      };
-
-      const response = await supabaseFetch(`/rest/v1/profile?id=eq.${payload.id}`, {
+        workplace: payload.workplace,
+        birthday: payload.birthday,
+        contacts: {
+          city: payload.contacts?.city,
+          github: payload.contacts?.github,
+          mobile: payload.contacts?.mobile,
+          telegram: payload.contacts?.telegram,
+        },
+        // personal: {
+        //   activity: payload.personal?.activity,
+        //   hobbies: payload.personal?.hobbies,  
+        //   movies: payload.personal?.movies,    
+        //   music: payload.personal?.music,      
+        //   quotes: payload.personal?.quotes     
+        // }
+        
+      }
+      const response = await supabaseFetch(`/rest/v1/users?id=eq.${payload.id}`, {
         method: "PATCH",
         headers: {
           Prefer: "return=representation",
