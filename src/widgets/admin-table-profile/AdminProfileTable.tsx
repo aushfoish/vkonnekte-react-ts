@@ -1,9 +1,12 @@
+import { useAuthStore } from "@/entities/user/model/useAuthStore";
 import { useFetchProfile } from "@/entities/user/model/useFetchProfile";
 import { AdminProfileTabItem } from "@/features/admin-tab-profile-item/ui/AdminProfileTabItem"
 
 export const AdminProfileTable = () => {
 
-        const { profile } = useFetchProfile("c849ba0e-1a02-4d1b-8042-01d801e3c7b1");
+    const userId = useAuthStore((state) => state.currentUserId)
+
+    const { profile } = useFetchProfile(userId);
     
     if (profile)
     return (

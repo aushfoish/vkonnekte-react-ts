@@ -1,3 +1,4 @@
+import { useAuthStore } from "@/entities/user/model/useAuthStore";
 import { useEditProfile } from "@/entities/user/model/useEditProfile";
 import { useFetchProfile } from "@/entities/user/model/useFetchProfile";
 import type { EditProfileState } from "@/features/admin-tab-profile-item/schemas/EditProfile";
@@ -7,9 +8,9 @@ import { useState } from "react";
 
 export const AdminProfileTabItem = (props: ProfileItemProps) => {
   const { id, user_id, firstname, ...editableFields } = props;
+  const userId = useAuthStore((state) => state.currentUserId)
 
   const { mutate: editProfile } = useEditProfile();
-  const userId = "c849ba0e-1a02-4d1b-8042-01d801e3c7b1";
 
   const { profile } = useFetchProfile(userId);
 
@@ -61,6 +62,10 @@ export const AdminProfileTabItem = (props: ProfileItemProps) => {
           <input
             value={editState.values.avatar}
             onChange={(e) => handleInput("avatar", e.currentTarget.value)}
+          ></input>
+          <input
+            value={editState.values.birthday}
+            onChange={(e) => handleInput("birthday", e.currentTarget.value)}
           ></input>
           <input
             value={editState.values.city}
@@ -145,15 +150,15 @@ export const AdminProfileTabItem = (props: ProfileItemProps) => {
           <div>{profile?.city}</div>
           <div>{profile?.languages}</div>
           <div>{profile?.workplace}</div>
-          <div>{profile?.contacts.city}</div>
-          <div>{profile?.contacts.mobile}</div>
-          <div>{profile?.contacts.github}</div>          
-          <div>{profile?.contacts.telegram}</div>
-          <div>{profile?.personal.activity}</div>
-          <div>{profile?.personal.hobbies}</div>
-          <div>{profile?.personal.music}</div>
-          <div>{profile?.personal.movies}</div>
-          <div>{profile?.personal.quotes}</div>
+          <div>{profile?.contacts?.city}</div>
+          <div>{profile?.contacts?.mobile}</div>
+          <div>{profile?.contacts?.github}</div>          
+          <div>{profile?.contacts?.telegram}</div>
+          <div>{profile?.personal?.activity}</div>
+          <div>{profile?.personal?.hobbies}</div>
+          <div>{profile?.personal?.music}</div>
+          <div>{profile?.personal?.movies}</div>
+          <div>{profile?.personal?.quotes}</div>
         </div>
         <div>
           <button onClick={() => edit()}>[Редактировать]</button>
