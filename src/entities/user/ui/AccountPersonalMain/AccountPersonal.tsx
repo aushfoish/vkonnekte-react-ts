@@ -1,10 +1,5 @@
+import { useSelectBirthday, useSelectLanguages, useSelectWorkplace } from '../../model/useProfileData';
 import styles from './AccountPersonalHidden.module.scss'
-import {
-
-  useSelectBirthday,
-  useSelectLanguages,
-  useSelectWorkplace,
-} from "../../model/useFetchPage";
 import {  PersonalInfo } from "@/shared/ui";
 
 export const AccountPersonal = () => {

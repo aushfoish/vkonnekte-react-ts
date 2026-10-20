@@ -1,5 +1,5 @@
+import { useSelectFirstname, useSelectLastname } from '../../model/useProfileData'
 import styles from './AccountTitle.module.scss'
-import { useSelectFirstname, useSelectLastname } from "@/entities/user/model/useFetchPage"
 
 export const AccountTitle = () => {
 

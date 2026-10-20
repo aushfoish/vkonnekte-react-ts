@@ -9,11 +9,20 @@ export const UserProfileSchema = z.object({
   bio: z.string(),
   avatar: z.string(),
   birthday: z.string(),
+  country: z.string(),
   city: z.string(),
   languages: z.string(),
   workplace: z.string(),
-  contacts: z.object({city: z.string(), github: z.string(), mobile: z.string(), telegram: z.string()}).nullable(),
-  personal: z.object({activity: z.string(), hobbies: z.string(), music: z.string(), movies: z.string(), quotes: z.string()}).nullable()
+  birth_location: z.string(),
+  website: z.string(),
+  phone_number: z.string(),
+  activities: z.string(),
+  hobbies: z.string(),
+  music_genres: z.string(),
+  favorite_games: z.string(),
+  favorite_movies: z.string(),
+  favorite_quotes: z.string(),
+  about_me: z.string(),
 })
 
 export type ProfileItem = z.infer<typeof UserProfileSchema>

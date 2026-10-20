@@ -1,30 +1,28 @@
-import { useSelectPersonal } from "../../model/useFetchPage";
+import { useSelectAbout, useSelectActivities, useSelectGames, useSelectHobbies, useSelectMovies, useSelectMusic } from "../../model/useProfileData";
 import styles from "./AccountPersonalHidden.module.scss";
 import { PersonalInfo } from "@/shared/ui";
 
 
 export const HobbiesInfo = () => {
-    const HOBBIES_SECTION_LABELS = {
-    activity: "Деятельность",
-    hobbies: "Увлечения",
-    music: "Любимая музыка",
-    movies: "Любимые фильмы",
-    quotes: "Любимые цитаты",
-  } as const;
-    const hobbiesInfo = useSelectPersonal();
+    
+    const hobbies = useSelectHobbies() || ''
+    const activities = useSelectActivities() || ''
+    const movies = useSelectMovies() || ''
+    const music = useSelectMusic() || ''
+    const games = useSelectGames() || ''
+    const about = useSelectAbout() || ''
+    const dataExist = hobbies || activities || movies || games || about
 
-    if (hobbiesInfo !== undefined && hobbiesInfo) {
+    if (dataExist) {
     return (
         <div className={styles.contactsInfo}>
           <h3 className={styles.infoHeader}>Личная информация</h3>
-
-          {Object.entries(HOBBIES_SECTION_LABELS).map(([field, label]) => {
-            const textValue = hobbiesInfo[field as keyof typeof hobbiesInfo];
-
-            return (
-              <PersonalInfo key={field} children={textValue} label={label} />
-            );
-          })}
+          {activities.length > 0 && <PersonalInfo label="Деятельность" children={activities}/>}
+          {hobbies.length > 0 && <PersonalInfo label="Увлечения" children={hobbies} />}
+          {movies.length > 0 && <PersonalInfo label="Любимые фильмы" children={movies} />}
+          {music.length > 0 && <PersonalInfo label="Любимая музыка" children={music} />}
+          {games.length > 0 && <PersonalInfo label="Любимые игры" children={games} />}
+          {about.length > 0 && <PersonalInfo label="О себе" children={about} />}
         </div>
     )}
 }

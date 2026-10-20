@@ -15,19 +15,16 @@ export const useEditProfile = () => {
         city: payload.city,
         workplace: payload.workplace,
         birthday: payload.birthday,
-        contacts: {
-          city: payload.contacts?.city,
-          github: payload.contacts?.github,
-          mobile: payload.contacts?.mobile,
-          telegram: payload.contacts?.telegram,
-        },
-        // personal: {
-        //   activity: payload.personal?.activity,
-        //   hobbies: payload.personal?.hobbies,  
-        //   movies: payload.personal?.movies,    
-        //   music: payload.personal?.music,      
-        //   quotes: payload.personal?.quotes     
-        // }
+        birth_location: payload.birth_location,
+        website: payload.website,
+        phone_number: payload.phone_number,
+        activities: payload.activities,
+        hobbies: payload.hobbies,
+        music_genres: payload.music_genres,
+        favorite_games: payload.favorite_games,
+        favorite_movies: payload.favorite_movies,
+        favorite_quotes: payload.favorite_quotes,
+        about_me: payload.about_me
         
       }
       const response = await supabaseFetch(`/rest/v1/users?id=eq.${payload.id}`, {
