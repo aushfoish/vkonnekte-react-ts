@@ -1,5 +1,5 @@
+import { useSelectAvatar, useSelectFirstname, useSelectLastname } from '../../model/useProfileData'
 import styles from './UserPicture.module.scss'
-import { useSelectAvatar, useSelectFirstname, useSelectLastname } from "@/entities/user/model/useFetchPage"
 import placeholder from "@/shared/assets/currentuser-placeholders-array/exited.png"
 
 

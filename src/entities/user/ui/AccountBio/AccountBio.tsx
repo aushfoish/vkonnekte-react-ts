@@ -1,5 +1,5 @@
+import { useSelectBio, useSelectFirstname, useSelectLastname } from '../../model/useProfileData'
 import styles from './AccountBio.module.scss'
-import {  useSelectBio, useSelectFirstname, useSelectLastname } from "@/entities/user/model/useFetchPage"
 
 export const AccountBio = () => {
 

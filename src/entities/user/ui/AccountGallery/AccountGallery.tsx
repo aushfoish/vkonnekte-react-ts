@@ -1,11 +1,9 @@
 import styles from './AccountGallery.module.scss'
 import { Micro_header } from "@/entities/posts";
-import {
 
-  useSelectFirstname,
-} from "@/entities/user/model/useFetchPage";
 import { GalleryItem } from "@/shared/ui/GalleryImgItem/GalleryItem";
 import { nameDeclension } from "@/entities/user/lib/nameDeclesion";
+import { useSelectFirstname } from '../../model/useProfileData';
 
 export const AccountGallery = () => {
   const firstName = useSelectFirstname()
