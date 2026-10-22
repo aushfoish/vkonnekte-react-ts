@@ -3,10 +3,13 @@ import { motion } from "framer-motion";
 import styles from './AccountWall.module.scss'
 import { useFetchPosts } from "@/entities/posts/model/usePosts";
 import { useWallWebsocket } from "@/widgets/account-wall/model/useWallWebsocket";
+import { useAuthStore } from "@/entities/user/model/useAuthStore";
 
 export const WallContent = () => {
-    useWallWebsocket()
-      const { data: posts = []} = useFetchPosts();
+    const currentUserId = useAuthStore((state) => state.currentUserId)
+    useWallWebsocket(currentUserId)
+    
+      const { data: posts = []} = useFetchPosts(currentUserId);
 
     return (
         <div className={styles.wallContent}>

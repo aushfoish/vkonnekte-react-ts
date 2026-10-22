@@ -18,5 +18,6 @@ export const signAsAdmin = async (email: string, password: string) => {
         const data = RefreshTokenSchema.parse(await response.json())
         localStorage.setItem('access_token', data.access_token);
         localStorage.setItem('refresh_token', data.refresh_token);
+        localStorage.setItem('current_user_id', data.user.id)
         return data
 }

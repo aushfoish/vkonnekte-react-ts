@@ -3,21 +3,21 @@ import { describe, expect, it } from "vitest";
 
 
 const array1 = [
-    {id: 1, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1"}
+    {id: 1, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1", wall_id: "1", author_id: "1"}
 ]
 
 const array3 = [
-    {id: 1, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1"},
-    {id: 2, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1"},
-    {id: 3, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1"}
+    {id: 1, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1", wall_id: "1", author_id: "1"},
+    {id: 2, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1", wall_id: "1", author_id: "1"},
+    {id: 3, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1", wall_id: "1", author_id: "1"}
 ]
 
 const array5 = [
-    {id: 1, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1"},
-    {id: 2, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1"},
-    {id: 3, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1"},
-    {id: 4, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1"},
-    {id: 5, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1"},
+    {id: 1, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1", wall_id: "1", author_id: "1"},
+    {id: 2, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1", wall_id: "1", author_id: "1"},
+    {id: 3, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1", wall_id: "1", author_id: "1"},
+    {id: 4, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1", wall_id: "1", author_id: "1"},
+    {id: 5, content: "1", date: "1", username: "1", userPictureSrc: "1", imageContentSrc: "1", wall_id: "1", author_id: "1"},
 ]
 
 

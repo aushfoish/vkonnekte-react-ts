@@ -2,9 +2,11 @@ import { useFetchPosts } from "@/entities/posts/model/usePosts";
 import style from './AdminPostsTable.module.scss'
 import { useDeletePost } from "@/entities/posts/model/useDeletePost";
 import { AdminPostsTableItem } from "@/features/admin-tab-post-item";
+import { useAuthStore } from "@/entities/user/model/useAuthStore";
 
 export const AdminPostsTable = () => {
-  const { data: posts = [] } = useFetchPosts();
+  const currentUserId = useAuthStore((state) => state.currentUserId)
+  const { data: posts = [] } = useFetchPosts(currentUserId);
   const {mutate: deletePost} = useDeletePost()
   
   return (
@@ -19,7 +21,8 @@ export const AdminPostsTable = () => {
           userPictureSrc={post.userPictureSrc}
           imageContentSrc={post.imageContentSrc}
           onDelete={() => deletePost(post.id)}
-          
+          author_id={post.author_id}
+          wall_id={post.wall_id}
         />
       ))}
     </div>

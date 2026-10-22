@@ -7,6 +7,8 @@ export const UserPostSchema = z.object({
   username: z.string(),
   userPictureSrc: z.string(),
   imageContentSrc: z.string(),
+  author_id: z.string().nullable(),
+  wall_id: z.string()
 });
 
 export const UserPostsSchema = z.array(UserPostSchema)

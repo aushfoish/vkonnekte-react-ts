@@ -10,6 +10,7 @@ export const useSendPost = () => {
       content: string;
       contentPicture: string;
     }) => {
+      const authorId = localStorage.getItem('current_user_id')
       const userName = useAuthStore.getState().userName;
       const userPic = useAuthStore.getState().userPic;
 
@@ -18,6 +19,8 @@ export const useSendPost = () => {
         username: userName,
         userPictureSrc: userPic,
         imageContentSrc: payload.contentPicture,
+        author_id: authorId,
+        wall_id: authorId,
       };
 
       const response = await supabaseFetch("/rest/v1/posts", {

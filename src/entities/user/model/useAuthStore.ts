@@ -22,8 +22,9 @@ interface useAuthStore {
   userIsLogged: boolean;
   userIsAdmin: boolean;
   isUserLoggining: boolean;
-  admin: () => void;
+  admin: () => Promise<void>;
   currentUserId: string;
+  adminAuthCheck: () => void;
 }
 
 export const useAuthStore = create<useAuthStore>((set) => ({
@@ -74,6 +75,18 @@ export const useAuthStore = create<useAuthStore>((set) => ({
       localStorage.removeItem("userdata");
       return false;
     }
+  },
+
+  adminAuthCheck: () => {
+    const currentUser = localStorage.getItem("current_user_id") ?? ""
+    try {
+      if (currentUser) {
+        set({currentUserId: currentUser})
+      }
+    } catch (error) {
+      console.log(error)
+    }
+    
   },
 
   anonymous: () => {
