@@ -5,6 +5,8 @@ export const PostToSendSchema = z.object({
   username: z.string(),
   userPictureSrc: z.string(),
   imageContentSrc: z.string(),
+  author_id: z.string().nullable(),
+  wall_id: z.string().nullable()
 });
 
 export type postToSend = z.infer<typeof PostToSendSchema>;

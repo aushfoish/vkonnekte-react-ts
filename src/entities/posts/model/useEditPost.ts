@@ -6,11 +6,14 @@ export const useEditPost = () => {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (payload: Partial<UserPost> & {id: number}) => {
+      const currentUserId = localStorage.getItem('current_user_id')
       const updatedPost = {
         content: payload.content,
         username: payload.username,
         userPictureSrc: payload.userPictureSrc,
-        imageContentSrc: payload.imageContentSrc
+        imageContentSrc: payload.imageContentSrc,
+        author_id: currentUserId,
+        wall_id: currentUserId
       };
 
       const response = await supabaseFetch(`/rest/v1/posts?id=eq.${payload.id}`, {

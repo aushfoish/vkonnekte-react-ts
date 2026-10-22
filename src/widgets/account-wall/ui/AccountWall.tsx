@@ -6,10 +6,12 @@ import { useFetchPosts } from "@/entities/posts/model/usePosts";
 import { SkeletonWall } from "@/shared/ui/SkeletonMainPage/SkeletonWall";
 import { Button, ContainerPlaceholder } from "@/shared/ui";
 import { WallContent } from "@/widgets/account-wall/ui/WallContent";
+import { useAuthStore } from "@/entities/user/model/useAuthStore";
 
 export const AccountWall = () => {
 
-  const { data: posts = [], isLoading, isError, refetch } = useFetchPosts();
+  const currentUser = useAuthStore((state) => state.currentUserId)
+  const { data: posts = [], isLoading, isError, refetch } = useFetchPosts(currentUser);
 
   if (isLoading) {
     return <SkeletonWall />;

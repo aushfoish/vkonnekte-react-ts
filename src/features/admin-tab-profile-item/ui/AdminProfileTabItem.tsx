@@ -56,67 +56,67 @@ export const AdminProfileTabItem = (props: ProfileItemProps) => {
             onChange={(e) => handleInput("lastname", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.bio}
+            value={editState.values.bio ?? ""}
             onChange={(e) => handleInput("bio", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.avatar}
+            value={editState.values.avatar ?? ""}
             onChange={(e) => handleInput("avatar", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.birthday}
+            value={editState.values.birthday ?? ""}
             onChange={(e) => handleInput("birthday", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.city}
+            value={editState.values.city ?? ""}
             onChange={(e) => handleInput("city", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.workplace}
+            value={editState.values.workplace ?? ""}
             onChange={(e) => handleInput("workplace", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.languages}
+            value={editState.values.languages ?? ""}
             onChange={(e) => handleInput("languages", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.country}
+            value={editState.values.country ?? ""}
             onChange={(e) => handleInput("country", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.phone_number}
+            value={editState.values.phone_number ?? ""}
             onChange={(e) => handleInput("phone_number", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.website}
+            value={editState.values.website ?? ""}
             onChange={(e) => handleInput("website", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.activities}
+            value={editState.values.activities ?? ""}
             onChange={(e) => handleInput("activities", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.hobbies}
+            value={editState.values.hobbies ?? ""}
             onChange={(e) => handleInput("hobbies", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.music_genres}
+            value={editState.values.music_genres ?? ""}
             onChange={(e) => handleInput("music_genres", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.favorite_movies}
+            value={editState.values.favorite_movies ?? ""}
             onChange={(e) => handleInput("favorite_movies", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.favorite_games}
+            value={editState.values.favorite_games ?? ""}
             onChange={(e) => handleInput("favorite_games", e.currentTarget.value)}
           ></textarea>
           <textarea
-            value={editState.values.favorite_quotes}
+            value={editState.values.favorite_quotes ?? ""}
             onChange={(e) => handleInput("favorite_quotes", e.currentTarget.value)}
           ></textarea>
           <textarea rows={4}
-            value={editState.values.about_me}
+            value={editState.values.about_me ?? ""}
             onChange={(e) => handleInput("about_me", e.currentTarget.value)}
           ></textarea>
           

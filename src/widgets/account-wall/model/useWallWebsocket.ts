@@ -2,7 +2,7 @@ import { UserPostSchema, type UserPosts } from "@/shared/api/schemas/userPostSch
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 
-export const useWallWebsocket = () => {
+export const useWallWebsocket = (wallId: string) => {
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export const useWallWebsocket = () => {
         if (type === "INSERT" && payload?.data?.record) {
           const newPost = UserPostSchema.parse(payload.data.record);
           queryClient.setQueryData<UserPosts>(
-            ["posts"],
+            ["posts", wallId],
             (oldPosts) => {
               if (!oldPosts) return [newPost];
               return [newPost, ...oldPosts];
@@ -97,5 +97,5 @@ export const useWallWebsocket = () => {
         }
       }
     };
-  }, [queryClient]);
+  }, [queryClient, wallId]);
 };
