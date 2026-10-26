@@ -9,6 +9,7 @@ export const useSendPost = () => {
     mutationFn: async (payload: {
       content: string;
       contentPicture: string;
+      wallId: string
     }) => {
       const authorId = localStorage.getItem('current_user_id')
       const userName = useAuthStore.getState().userName;
@@ -20,7 +21,7 @@ export const useSendPost = () => {
         userPictureSrc: userPic,
         imageContentSrc: payload.contentPicture,
         author_id: authorId,
-        wall_id: authorId,
+        wall_id: payload.wallId,
       };
 
       const response = await supabaseFetch("/rest/v1/posts", {
