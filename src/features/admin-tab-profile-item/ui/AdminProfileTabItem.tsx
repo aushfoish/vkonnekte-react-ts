@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export const AdminProfileTabItem = (props: ProfileItemProps) => {
   const { id, user_id, firstname, ...editableFields } = props;
-  const userId = useAuthStore((state) => state.currentUserId)
+  const userId = useAuthStore((state) => state.currentUserId) || undefined
 
   const { mutate: editProfile } = useEditProfile();
 
@@ -50,74 +50,92 @@ export const AdminProfileTabItem = (props: ProfileItemProps) => {
           <textarea rows={2}
             value={editState.values.firstname}
             onChange={(e) => handleInput("firstname", e.currentTarget.value)}
+            placeholder="Ваше имя.."
           ></textarea>
           <textarea rows={2}
             value={editState.values.lastname}
             onChange={(e) => handleInput("lastname", e.currentTarget.value)}
+            placeholder="Ваша фамилия.."
           ></textarea>
           <textarea
             value={editState.values.bio ?? ""}
             onChange={(e) => handleInput("bio", e.currentTarget.value)}
+            placeholder="Введите статус"
           ></textarea>
           <textarea
             value={editState.values.avatar ?? ""}
             onChange={(e) => handleInput("avatar", e.currentTarget.value)}
+            placeholder="вставьте ссылку на фото (потом нормальную загрузку сделаю, пока так)"
           ></textarea>
           <textarea
             value={editState.values.birthday ?? ""}
             onChange={(e) => handleInput("birthday", e.currentTarget.value)}
+            placeholder="Ваш день рождения.."
           ></textarea>
           <textarea
             value={editState.values.city ?? ""}
             onChange={(e) => handleInput("city", e.currentTarget.value)}
+            placeholder="Город проживания.."
           ></textarea>
           <textarea
             value={editState.values.workplace ?? ""}
             onChange={(e) => handleInput("workplace", e.currentTarget.value)}
+            placeholder="Место работы.."
           ></textarea>
           <textarea
             value={editState.values.languages ?? ""}
             onChange={(e) => handleInput("languages", e.currentTarget.value)}
+            placeholder="На каких языках говорите.."
           ></textarea>
           <textarea
             value={editState.values.country ?? ""}
             onChange={(e) => handleInput("country", e.currentTarget.value)}
+            placeholder="Ваша страна.."
           ></textarea>
           <textarea
             value={editState.values.phone_number ?? ""}
             onChange={(e) => handleInput("phone_number", e.currentTarget.value)}
+            placeholder="Мобильный телефон"
           ></textarea>
           <textarea
             value={editState.values.website ?? ""}
             onChange={(e) => handleInput("website", e.currentTarget.value)}
+            placeholder="Сайт"
           ></textarea>
           <textarea
             value={editState.values.activities ?? ""}
             onChange={(e) => handleInput("activities", e.currentTarget.value)}
+            placeholder="Деятельность"
           ></textarea>
           <textarea
             value={editState.values.hobbies ?? ""}
             onChange={(e) => handleInput("hobbies", e.currentTarget.value)}
+            placeholder="Увлечения"
           ></textarea>
           <textarea
             value={editState.values.music_genres ?? ""}
             onChange={(e) => handleInput("music_genres", e.currentTarget.value)}
+            placeholder="Любимая музыка"
           ></textarea>
           <textarea
             value={editState.values.favorite_movies ?? ""}
             onChange={(e) => handleInput("favorite_movies", e.currentTarget.value)}
+            placeholder="Любимые фильмы"
           ></textarea>
           <textarea
             value={editState.values.favorite_games ?? ""}
             onChange={(e) => handleInput("favorite_games", e.currentTarget.value)}
+            placeholder="Любимые игры"
           ></textarea>
           <textarea
             value={editState.values.favorite_quotes ?? ""}
             onChange={(e) => handleInput("favorite_quotes", e.currentTarget.value)}
+            placeholder="Любимые цитаты"
           ></textarea>
           <textarea rows={4}
             value={editState.values.about_me ?? ""}
             onChange={(e) => handleInput("about_me", e.currentTarget.value)}
+            placeholder="Напишите что-нибудь о себе..."
           ></textarea>
           
           

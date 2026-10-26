@@ -6,11 +6,13 @@ import { lazy, useState } from "react";
 import { Attachments } from "./Attachments";
 import styles from "./CreatePost.module.scss";
 import { useSendPost } from "@/entities/posts/model/useSendPost";
+import { useParams } from "react-router-dom";
 
 export const AddPostForm = () => {
   const [modalOpened, setModalOpened] = useState(false);
   const [inputPost, setInputPost] = useState("");
   const { mutate: sendPost, isPending } = useSendPost();
+  const {userId} = useParams()
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,17 +23,19 @@ export const AddPostForm = () => {
       return;
     }
 
-    sendPost(
+    if (userId) 
+    {sendPost(
       {
         content: inputPost,
         contentPicture: "",
+        wallId: userId
       },
       {
         onSuccess: () => {
           setInputPost("");
         },
       },
-    );
+    );}
   };
 
   return (

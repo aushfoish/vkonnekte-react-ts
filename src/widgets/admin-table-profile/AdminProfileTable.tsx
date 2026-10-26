@@ -3,7 +3,7 @@ import { useFetchProfile } from "@/entities/user/model/useFetchProfile";
 import { AdminProfileTabItem } from "@/features/admin-tab-profile-item/ui/AdminProfileTabItem";
 
 export const AdminProfileTable = () => {
-  const userId = useAuthStore((state) => state.currentUserId);
+  const userId = useAuthStore((state) => state.currentUserId) || undefined
 
   const { profile } = useFetchProfile(userId);
 
