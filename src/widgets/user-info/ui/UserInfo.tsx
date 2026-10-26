@@ -10,6 +10,7 @@ import { AccountWall } from "@/widgets/account-wall";
 import { AccountPersonalSpoilerButton } from "@/shared/ui/AccountSpoilerBtn";
 import styles from './UserInfo.module.scss'
 import { PersonalInfoCheck, ContactsInfoCheck } from "@/entities/user/model/useProfileData";
+import { useParams } from "react-router-dom";
 
 export const UserInfo = () => {
   const personalInfo = PersonalInfoCheck()
@@ -19,6 +20,7 @@ export const UserInfo = () => {
     (contactsInfo);
   const [isOpen, setIsOpen] = useState(false);
   const infoID = useId();
+  const {userId} = useParams()
 
   return (
     <div className={styles.userInfo}>
@@ -51,7 +53,7 @@ export const UserInfo = () => {
 
       <AccountGallery />
 
-      <AccountWall />
+      {userId && <AccountWall wallId={userId}/>}
     </div>
   );
 };

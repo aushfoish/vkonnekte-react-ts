@@ -1,5 +1,5 @@
-import { useAuthStore } from "@/entities/user/model/useAuthStore";
 import { useFetchProfile } from "@/entities/user/model/useFetchProfile";
+import { useParams } from "react-router-dom";
 
 
 export interface Friend {
@@ -11,8 +11,8 @@ export interface Friend {
 
 
 export const useUserProfileData = () => {
-  const currentUserId = useAuthStore((state) => state.currentUserId)
-  const { profile } = useFetchProfile(currentUserId);
+  const {userId} = useParams()
+  const { profile } = useFetchProfile(userId);
   return profile
 }
  

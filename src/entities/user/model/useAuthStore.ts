@@ -23,12 +23,12 @@ interface useAuthStore {
   userIsAdmin: boolean;
   isUserLoggining: boolean;
   admin: () => Promise<void>;
-  currentUserId: string;
+  currentUserId: string | null;
   adminAuthCheck: () => void;
 }
 
 export const useAuthStore = create<useAuthStore>((set) => ({
-  currentUserId: "c849ba0e-1a02-4d1b-8042-01d801e3c7b1",
+  currentUserId: null,
   uploadedUserpic: "",
   userName: "",
   userPic: "",
@@ -78,7 +78,7 @@ export const useAuthStore = create<useAuthStore>((set) => ({
   },
 
   adminAuthCheck: () => {
-    const currentUser = localStorage.getItem("current_user_id") ?? ""
+    const currentUser = localStorage.getItem("current_user_id")
     try {
       if (currentUser) {
         set({currentUserId: currentUser})
