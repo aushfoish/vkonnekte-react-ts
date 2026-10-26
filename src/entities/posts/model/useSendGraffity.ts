@@ -18,12 +18,16 @@ export const useSendGraffity = () => {
 
       const userName = useAuthStore.getState().userName;
       const userPic = useAuthStore.getState().userPic;
+      const currentUserId = localStorage.getItem('current_user_id')
+      
 
       const newPost: postToSend = {
         content: "",
         username: userName,
         userPictureSrc: userPic,
         imageContentSrc: blobUrl,
+        author_id: currentUserId,
+        wall_id: currentUserId
       };
 
       const response = await supabaseFetch(
