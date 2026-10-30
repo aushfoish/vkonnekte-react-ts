@@ -8,7 +8,7 @@ import { FriendsList } from "@/widgets/friends-list/ui/friendsList";
 export const UserFriendsOnline = () => {
   return (
     <div className={styles.friendsBlock}>
-      <Micro_header children="Друзья" count={`${25} друзей`} />
+      <Micro_header children="Друзья" count={`${5} друзей`} />
       <FriendsList />
     </div>
   );

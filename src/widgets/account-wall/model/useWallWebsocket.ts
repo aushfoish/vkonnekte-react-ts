@@ -72,7 +72,7 @@ export const useWallWebsocket = (wallId: string) => {
           const oldRecordID = payload?.data?.old_record.id;
           if (oldRecordID !== undefined && oldRecordID !== null) {
             queryClient.setQueryData<UserPosts>(
-              ["posts"],
+              ["posts", wallId],
               (oldpPosts) => {
                 if (!oldpPosts) return [];
                 return oldpPosts.filter((post) => post.id !== oldRecordID);

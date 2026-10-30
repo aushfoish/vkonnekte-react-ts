@@ -1,7 +1,9 @@
+import { AdminAuthModule } from "@/features/pass-the-authorization/ui/AdminAuthModule";
+import { GuestAuthMode } from "@/features/pass-the-authorization/ui/GuestAuthModule";
 import { ModalWindow } from "@/shared/ui/ModalWindow/ModalWindow";
-import { AuthorizationModule } from "@/features/pass-the-authorization/ui/AuthorizationModule";
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import style from './style.module.scss'
 
 export const MainPageAuthorization = () => {
   const [modalClosed, setModalClosed] = useState(false);
@@ -10,7 +12,12 @@ export const MainPageAuthorization = () => {
     <AnimatePresence>
       {modalClosed === false && (
         <ModalWindow
-          children={<AuthorizationModule onClose={() => setModalClosed(true)} />}
+          children={
+          <div className={style.authModule}>
+            <AdminAuthModule onClose={() => setModalClosed(true)}/>
+            <GuestAuthMode onClose={() => setModalClosed(true)} /> 
+          </div>
+        }
           label="Авторизация"
           id="auth"
         />

@@ -13,13 +13,17 @@
   align-items: baseline;
   gap: 5px;
   background-color: white;
-  width: 100%;
+  width: 50%;
   height: 100%;
+  .authHeader {
+    margin: 0;
+    text-align: left;
+  }
   .authInput {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    width: 100%;
+    width: 90%;
     .authInputLabel {
       color: #517398;
       font-size: 13px;

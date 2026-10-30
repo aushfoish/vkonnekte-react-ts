@@ -29,7 +29,7 @@ const router = createBrowserRouter([
           const { AdminPage } = await import("@/pages/admin/ui/AdminPage");
           return { Component: AdminPage };
         },
-      },
+      }
     ],
   },
 ]);

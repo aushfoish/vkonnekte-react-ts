@@ -1,1 +1,1 @@
-export { AuthorizationModule } from "./ui/AuthorizationModule";
+export { GuestAuthMode } from "./ui/GuestAuthModule";

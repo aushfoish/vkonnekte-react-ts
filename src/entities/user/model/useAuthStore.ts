@@ -34,7 +34,6 @@ export const useAuthStore = create<useAuthStore>((set) => ({
   userPic: "",
   userIsLogged: false,
   userIsAdmin: false,
-
   isUserLoggining: false,
 
   authorization: (username, userpic) => {
@@ -61,40 +60,54 @@ export const useAuthStore = create<useAuthStore>((set) => ({
   authCheck: () => {
     const savedData = localStorage.getItem("userdata");
     if (!savedData) return false;
-
     try {
+      set({isUserLoggining: true})
       const dataParse = JSON.parse(savedData) as UserData;
       set({
         userName: dataParse.userName || "",
         userPic: dataParse.userPic || "",
         userIsLogged: dataParse.userIsLogged,
+        isUserLoggining: false
       });
       return true;
     } catch (error) {
       console.error(error instanceof Error ? error.message : "invalid JSON");
       localStorage.removeItem("userdata");
+      set({isUserLoggining: false})
       return false;
     }
   },
 
   adminAuthCheck: () => {
+    set({isUserLoggining: true})
     const currentUser = localStorage.getItem("current_user_id")
+    if (!currentUser) return false
     try {
       if (currentUser) {
-        set({currentUserId: currentUser})
+        set({currentUserId: currentUser, isUserLoggining: false})
+        return true
       }
     } catch (error) {
-      console.log(error)
+      set({isUserLoggining: false})
+      console.error(error instanceof Error ? error.message : "invalid JSON")
+      localStorage.removeItem("current_user_id")
+      return false
     }
     
   },
 
   anonymous: () => {
-    set({
-      userName: "не авторизовался",
+    const guestData: UserData = {
+      userName: "Гость",
       userPic: placeholder,
-      userIsLogged: false,
-    });
+      userIsLogged: true,
+    }
+    set({
+      userName: "Гость",
+      userPic: placeholder,
+      userIsLogged: true
+    })
+    localStorage.setItem('userdata', JSON.stringify(guestData))
   },
 
   admin: async () => {

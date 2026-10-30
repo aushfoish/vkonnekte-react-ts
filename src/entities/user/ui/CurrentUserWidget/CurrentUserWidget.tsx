@@ -6,6 +6,7 @@ export const CurrentUserWidget = () => {
   const currentUserPic = useAuthStore((state) => state.userPic);
   const userIsLogged = useAuthStore((state) => state.userIsLogged);
 
+  if (userIsLogged)
   return (
     <div className={styles.currentUser}>
       <img

@@ -8,7 +8,7 @@ interface AuthorizationModuleProps {
   onClose: () => void;
 }
 
-export const AuthorizationModule = (props: AuthorizationModuleProps) => {
+export const GuestAuthMode = (props: AuthorizationModuleProps) => {
   const { onClose } = props;
 
   const [username, setUsername] = useState("");
@@ -68,6 +68,7 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
 
   return (
     <form className={styles.authForm} onSubmit={handleSubmit}>
+      <h3 className={styles.authHeader}>Войдите как гость</h3>
       <div className={styles.inputsContainer}>
         <Input
           maxLength={25}

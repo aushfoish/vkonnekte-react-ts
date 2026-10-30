@@ -5,6 +5,7 @@ import {
 } from "@/shared/api/schemas/friendItemSchema";
 import {
 
+  ProfilesSchema,
   type Profiles,
 } from "@/shared/api/schemas/userProfileSchema";
 
@@ -28,11 +29,10 @@ export const useFetchFriends = (userId: string | undefined) => {
           );
           if (!friendItem.ok)
             throw new Error("не удалось загрузить данные о друзьях");
-          const friendsData = (await friendItem.json());
+          const friendsData = ProfilesSchema.parse(await friendItem.json());
           return friendsData[0];
         }),
       );
-      console.log(readyFriendlist)
       return readyFriendlist;
     },
     enabled: !!userId,
