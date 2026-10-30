@@ -9,13 +9,14 @@ const NAV_ITEMS = [
 
 export const AppAside = () => {
   const loggedUser = useAuthStore((state) => state.currentUserId)
+  
   return (
     <aside className={styles.sideNavigation}>
       <nav className={styles.navigationMain}>
           {NAV_ITEMS.map((item) => {
           let path = item.id
           if (item.id === "my-page") {
-            path = loggedUser ? `profile/${loggedUser}` : "login"
+            path = loggedUser ? `profile/${loggedUser}` : `profile/c849ba0e-1a02-4d1b-8042-01d801e3c7b1`
           }
           return (
            <AsideNavBtn

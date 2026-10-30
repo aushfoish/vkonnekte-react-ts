@@ -1,4 +1,4 @@
-import { Button, Input, Loader, Modal_button } from "@/shared/ui";
+import { Button, Input, Loader } from "@/shared/ui";
 import styles from "./Auth.module.scss";
 import { useState } from "react";
 import { signAsAdmin } from "@/entities/user/model/signAsAdmin";
@@ -30,6 +30,7 @@ export const AdminAuthModule = (props: AdminAuthModule) => {
 
   return (
     <form className={styles.authForm} onSubmit={handleSubmit}>
+      <h3 className={styles.authHeader}>Войдите в свой профиль</h3>
       <div className={styles.inputsContainer}>
         <Input
           maxLength={25}
@@ -73,14 +74,14 @@ export const AdminAuthModule = (props: AdminAuthModule) => {
             onClick={handleSubmit}
           />
 
-          <Modal_button
+          {/* <Modal_button
             type="button"
             className={styles.option}
             onClick={() => {
               onClose();
             }}
-            btnLabel="Отмена"
-          />
+            btnLabel="Регистрация"
+          /> */}
         </div>
       </div>
     </form>

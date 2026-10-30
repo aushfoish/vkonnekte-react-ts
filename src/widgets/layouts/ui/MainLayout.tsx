@@ -24,7 +24,7 @@ export const MainLayout = () => {
           window.location.reload();
         }}
       />
-            <MainPageAuthorization />
+      <MainPageAuthorization />
 
       {vidgetOpened === true && <AudioMainpageVidget />}
 

@@ -6,6 +6,7 @@ describe("formatName", () => {
     expect(nameDeclension("Роман")).toBe("Романа");
     expect(nameDeclension("Аркадий")).toBe("Аркадия");
     expect(nameDeclension("Игорь")).toBe("Игоря");
+    expect(nameDeclension("Дима")).toBe("Димы");
   });
   it("Должен правильно просклонять введённые имена-исключения", () => {
     expect(nameDeclension("Пётр")).toBe("Петра");

@@ -1,4 +1,4 @@
-import { useSelectAbout, useSelectActivities, useSelectGames, useSelectHobbies, useSelectMovies, useSelectMusic } from "../../model/useProfileData";
+import { useSelectAbout, useSelectActivities, useSelectGames, useSelectHobbies, useSelectMovies, useSelectMusic, useSelectQuotes } from "../../model/useProfileData";
 import styles from "./AccountPersonalHidden.module.scss";
 import { PersonalInfo } from "@/shared/ui";
 
@@ -11,7 +11,8 @@ export const HobbiesInfo = () => {
     const music = useSelectMusic() || ''
     const games = useSelectGames() || ''
     const about = useSelectAbout() || ''
-    const dataExist = hobbies || activities || movies || games || about
+    const quotes = useSelectQuotes() || ''
+    const dataExist = hobbies || activities || movies || games || about || quotes
 
     if (dataExist) {
     return (
@@ -23,6 +24,8 @@ export const HobbiesInfo = () => {
           {music.length > 0 && <PersonalInfo label="Любимая музыка" children={music} />}
           {games.length > 0 && <PersonalInfo label="Любимые игры" children={games} />}
           {about.length > 0 && <PersonalInfo label="О себе" children={about} />}
+          {quotes.length > 0 && <PersonalInfo label="Любимые цитаты" children={quotes} />}
+          
         </div>
     )}
 }

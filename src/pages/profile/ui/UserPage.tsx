@@ -8,17 +8,25 @@ import { useParams } from "react-router-dom";
 // import { AdminAuthModule } from "@/features/pass-the-authorization/ui/AdminAuthModule";
 
 export const UserPage = () => {
-  const { userId } = useParams()
-  const auth = useAuthStore((state) => state.adminAuthCheck)
-  auth()
-  
-  const { isLoading, profile, isFetchPositive, refetch } = useFetchProfile(userId);
-  
-  if (!profile && isFetchPositive === false) return <FetchErrorModal onClick={refetch} label="Не удалось подключиться к серверу" text="Проверьте подключение к интернету и обновите страницу, либо
-              повторите попытку позже."/>
+  const { userId } = useParams();
+  const auth = useAuthStore((state) => state.adminAuthCheck);
+  auth();
+
+  const { isLoading, profile, isFetchPositive, refetch } =
+    useFetchProfile(userId);
+
+  if (!profile && isFetchPositive === false)
+    return (
+      <FetchErrorModal
+        onClick={refetch}
+        label="Не удалось подключиться к серверу"
+        text="Проверьте подключение к интернету и обновите страницу, либо
+              повторите попытку позже."
+      />
+    );
 
   if (isLoading || !profile) return <SkeletonMainPage />;
-  
+
   return (
     <>
       <AccountTitle />
