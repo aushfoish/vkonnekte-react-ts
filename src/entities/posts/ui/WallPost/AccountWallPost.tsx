@@ -4,6 +4,9 @@ import { PostAuthorPic } from "./PostAuthorPic";
 import { PostText } from "./PostText";
 import { PostShareAndDate } from "./PostShareDate";
 import styles from "./WallPost.module.scss";
+import { useAuthStore } from "@/entities/user/model/useAuthStore";
+import { useParams } from "react-router-dom";
+import { Button } from "@/shared/ui";
 
 export interface AccountWallPostProps {
   id: number;
@@ -13,17 +16,27 @@ export interface AccountWallPostProps {
   userPicSrc: string;
   text: string;
   alt: string;
+  deletePost: () => void
 }
 
 export const AccountWallPost = React.memo((props: AccountWallPostProps) => {
-  const { id, label, text, date, imgSrc, userPicSrc, alt } = props;
+  const { id, label, text, date, imgSrc, userPicSrc, alt, deletePost } = props;
+
+  const currentUserId = useAuthStore((state) => state.currentUserId)
+  const {userId} = useParams()
+
+  const wallIsMine = currentUserId === userId
 
   return (
     <div className={styles.postGenuinely} id={String(id)}>
       <PostAuthorPic src={userPicSrc} alt={`Фотография пользователя ${alt}`} />
 
       <div className={styles.contentPost}>
-        <PostAuthor label={label} />
+        <div style={{display: "flex", flexDirection: "row", width: "100%", justifyContent: "space-between"}}>
+          <PostAuthor label={label} />
+          {wallIsMine && deletePost && (<Button className={styles.option} onClick={deletePost} children="Удалить пост"/>)}
+        </div>
+        
 
         {text && <PostText text={text} id={id} />}
 
