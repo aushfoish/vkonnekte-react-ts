@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabaseFetch } from "@/shared/api";
 import { UserPostsSchema, type UserPosts} from "@/shared/api/schemas/userPostSchema";
 
-export const useFetchPosts = (userId: string | undefined) => {
+export const useFetchPosts = (userId: string | null) => {
   return useQuery<UserPosts>({
     queryKey: ["posts", userId],
     queryFn: async () => {

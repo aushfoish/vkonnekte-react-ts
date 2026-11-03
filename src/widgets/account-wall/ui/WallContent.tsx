@@ -5,6 +5,7 @@ import { useFetchPosts } from "@/entities/posts/model/usePosts";
 import { useWallWebsocket } from "@/widgets/account-wall/model/useWallWebsocket";
 import { SkeletonWall } from "@/shared/ui/SkeletonMainPage/SkeletonWall";
 import { WallFetchError } from "@/widgets/account-wall/ui/WallFetchError";
+import { useDeletePost } from "@/entities/posts/model/useDeletePost";
 
 interface WallContentProps {
   wallId: string;
@@ -13,6 +14,7 @@ interface WallContentProps {
 export const WallContent = (props: WallContentProps) => {
   const { wallId } = props;
   const { data: posts = [], isLoading, isError, refetch } = useFetchPosts(wallId);
+  const {mutate: deletePost} = useDeletePost()
 
   useWallWebsocket(wallId);
 
@@ -39,6 +41,7 @@ export const WallContent = (props: WallContentProps) => {
           }}
         >
           <AccountWallPost
+            deletePost={() => deletePost(post.id)}
             alt={post.username}
             userPicSrc={post.userPictureSrc}
             id={post.id}

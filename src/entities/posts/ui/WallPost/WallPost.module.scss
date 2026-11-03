@@ -33,7 +33,7 @@
       }
     }
     .contentPicture {
-        max-width: 298px;
+      max-width: 298px;
     }
     .textContent {
       display: flex;
@@ -71,8 +71,20 @@
         gap: 15px;
       }
       .like {
-        color: var(--color-blue-500)
+        color: var(--color-blue-500);
       }
     }
   }
 }
+.option {
+  background-color: transparent;
+  border: 1px solid transparent;
+  font-size: 9px;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+.option:hover {
+  background-color: transparent;
+  color: var(--color-blue-100);
+
+  }
