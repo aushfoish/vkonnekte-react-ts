@@ -3,8 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { supabaseFetch } from "@/shared/api";
 import { ProfilesSchema } from "@/shared/api/schemas/userProfileSchema";
 
-
-
 export const useFetchProfile = (userId: string | undefined) => {
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["profileOwner", userId],

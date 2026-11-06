@@ -46,8 +46,11 @@ export const supabaseFetch = async (
         throw new Error("неизвестная ошибка при отправке запроса");
       return response;
     } catch (error) {
-      console.error(error);
-      throw error;
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.log(error)
+      }
     }
   };
   return await dataFetch();

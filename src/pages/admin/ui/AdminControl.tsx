@@ -4,13 +4,16 @@ import style from './AdminControl.module.scss'
 import { AdminPostsTable } from "@/widgets/admin-table-posts/ui/AdminPostsTable";
 import { AdminAudioTable } from "@/widgets/admin-table-audio/ui/AdminAudioTable";
 import { AdminProfileTable } from "@/widgets/admin-table-profile/AdminProfileTable";
+import { useNavigate } from "react-router-dom";
 
 export const AdminControl = () => {
   const [cathegory, setCathegory] = useState("посты");
+  const nav = useNavigate()
   const logout = () => {
     localStorage.removeItem('access_token')
     localStorage.removeItem('refresh_token')
     localStorage.removeItem('current_user_id')
+    nav(-1)
   }
 
   return (

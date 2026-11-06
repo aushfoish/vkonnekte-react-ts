@@ -17,8 +17,8 @@ export const uploadPicture = async (
         },
         body: blob,
       });
-      if (!response.ok) {
-        throw new Error(`Ошибка загрузки изображения: ${response.status}`);
+      if (!response?.ok) {
+        throw new Error(`Ошибка загрузки изображения: ${response?.status}`);
       }
       
       return blobUrl

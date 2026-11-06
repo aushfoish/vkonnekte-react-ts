@@ -1,13 +1,10 @@
 import "./App.css";
-import {
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import { UserPage } from "@/pages/profile";
 import { MainLayout } from "@/widgets/layouts";
 import { RootRedirect } from "@/app/RootRedirect";
-
+import { CheckAuth } from "@/entities/user/model/CheckAuth";
 
 const router = createBrowserRouter([
   {
@@ -29,11 +26,12 @@ const router = createBrowserRouter([
           const { AdminPage } = await import("@/pages/admin/ui/AdminPage");
           return { Component: AdminPage };
         },
-      }
+      },
     ],
   },
 ]);
 
 export const App = () => {
+  CheckAuth();
   return <RouterProvider router={router} />;
 };
