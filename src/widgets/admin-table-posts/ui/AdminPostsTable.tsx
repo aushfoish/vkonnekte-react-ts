@@ -5,10 +5,20 @@ import { AdminPostsTableItem } from "@/features/admin-tab-post-item";
 import { useAuthStore } from "@/entities/user/model/useAuthStore";
 
 export const AdminPostsTable = () => {
+  const loggining = useAuthStore((state) => state.isUserLoggining)
   const currentUserId = useAuthStore((state) => state.currentUserId)
+  
   const { data: posts = [] } = useFetchPosts(currentUserId);
   const {mutate: deletePost} = useDeletePost()
-  
+  if (loggining)
+    return (
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <h3>Загружаю список постов...</h3>
+      </div>
+    )
+
+
+  if (currentUserId !== null)
   return (
     <div className={style.postsTable}>
       {posts.map((post) => (

@@ -31,7 +31,11 @@ export const refreshToken = async () => {
         return true;
       }
     } catch (error) {
-      console.error(error);
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.log(error)
+      }
       return false;
     }
   };
