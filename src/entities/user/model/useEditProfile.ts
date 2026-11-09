@@ -35,8 +35,8 @@ export const useEditProfile = () => {
         body: JSON.stringify(updatedProfile),
       });
 
-      if (!response.ok)
-        throw new Error(`Ошибка при редактировании анкеты: ${response.status}`);
+      if (!response?.ok)
+        throw new Error(`Ошибка при редактировании анкеты: ${response?.status}`);
 
       const editedProfile = ProfilesSchema.parse(await response.json())
       return editedProfile;
