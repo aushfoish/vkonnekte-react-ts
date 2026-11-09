@@ -17,7 +17,7 @@ interface useAuthStore {
   userPic: string;
   authorization: (username?: string, userpic?: string) => void;
   setUserpic: (url: string) => void;
-  authCheck: () => void;
+  // authCheck: () => void;
   anonymous: () => void;
   userIsLogged: boolean;
   userIsAdmin: boolean;
@@ -57,38 +57,39 @@ export const useAuthStore = create<useAuthStore>((set) => ({
     set({ userPic: url });
   },
 
-  authCheck: () => {
-    const savedData = localStorage.getItem("userdata");
-    if (!savedData) return false;
-    try {
-      set({isUserLoggining: true})
-      const dataParse = JSON.parse(savedData) as UserData;
-      set({
-        userName: dataParse.userName || "",
-        userPic: dataParse.userPic || "",
-        userIsLogged: dataParse.userIsLogged,
-        isUserLoggining: false
-      });
-      return true;
-    } catch (error) {
-      console.error(error instanceof Error ? error.message : "invalid JSON");
-      localStorage.removeItem("userdata");
-      set({isUserLoggining: false})
-      return false;
-    }
-  },
+  // authCheck: () => {
+  //   const savedData = localStorage.getItem("userdata");
+  //   if (!savedData) return false;
+  //   try {
+  //     set({isUserLoggining: true})
+  //     const dataParse = JSON.parse(savedData) as UserData;
+  //     set({
+  //       userName: dataParse.userName || "",
+  //       userPic: dataParse.userPic || "",
+  //       userIsLogged: dataParse.userIsLogged,
+  //       isUserLoggining: false
+  //     });
+      
+  //     return true;
+  //   } catch (error) {
+  //     console.error(error instanceof Error ? error.message : "invalid JSON");
+  //     localStorage.removeItem("userdata");
+  //     set({isUserLoggining: false})
+  //     return false;
+  //   }
+  // },
 
   adminAuthCheck: () => {
-    set({isUserLoggining: true})
+    set({isUserLoggining: true, userIsLogged: false})
     const currentUser = localStorage.getItem("current_user_id")
     if (!currentUser) return false
     try {
       if (currentUser) {
-        set({currentUserId: currentUser, isUserLoggining: false})
+        set({currentUserId: currentUser, isUserLoggining: false, userIsLogged: true})
         return true
       }
     } catch (error) {
-      set({isUserLoggining: false})
+      set({isUserLoggining: false, userIsLogged: false})
       console.error(error instanceof Error ? error.message : "invalid JSON")
       localStorage.removeItem("current_user_id")
       return false
@@ -112,7 +113,7 @@ export const useAuthStore = create<useAuthStore>((set) => ({
 
   admin: async () => {
     try {
-      set({ isUserLoggining: true });
+      set({ isUserLoggining: true, userIsLogged: false });
       const accessToken = localStorage.getItem("access_token");
       if (!accessToken) return;
 
@@ -128,7 +129,7 @@ export const useAuthStore = create<useAuthStore>((set) => ({
 
       if (response.status === 403) {
         deleteToken();
-        set({ userIsAdmin: false, isUserLoggining: false });
+        set({ userIsAdmin: false, isUserLoggining: false, userIsLogged: false });
       }
 
       if (response.status === 401) {
@@ -138,12 +139,12 @@ export const useAuthStore = create<useAuthStore>((set) => ({
           set({ userIsAdmin: false, isUserLoggining: false });
         }
         if (refresh === true) {
-          set({ userIsAdmin: true, isUserLoggining: false });
+          set({ userIsAdmin: true, isUserLoggining: false, userIsLogged: true });
         }
       }
 
       if (response.ok) {
-        set({ userIsAdmin: true, isUserLoggining: false });
+        set({ userIsAdmin: true, isUserLoggining: false, userIsLogged: true });
       }
     } catch (error) {
       console.log(error);

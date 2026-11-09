@@ -1,7 +1,8 @@
-import { Button, Input, Loader } from "@/shared/ui";
+import { Button, Input, Loader, Modal_button } from "@/shared/ui";
 import styles from "./Auth.module.scss";
 import { useState } from "react";
 import { signAsAdmin } from "@/entities/user/model/signAsAdmin";
+import { useAuthStore } from "@/entities/user/model/useAuthStore";
 
 interface AdminAuthModule {
   onClose: () => void;
@@ -12,7 +13,8 @@ export const AdminAuthModule = (props: AdminAuthModule) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLogining, setIsLogining] = useState(false);
-
+  const anonymous = useAuthStore((state) => state.anonymous);
+  
   const handleSubmit = () => {
     setIsLogining(true);
     signAsAdmin(username, password);
@@ -74,14 +76,23 @@ export const AdminAuthModule = (props: AdminAuthModule) => {
             onClick={handleSubmit}
           />
 
-          {/* <Modal_button
+          <Modal_button
             type="button"
             className={styles.option}
             onClick={() => {
               onClose();
             }}
             btnLabel="Регистрация"
-          /> */}
+          />
+          <Modal_button
+            type="button"
+            className={styles.option}
+            onClick={() => {
+              anonymous();
+              onClose();
+            }}
+            btnLabel='Режим "Гостя"'
+          />
         </div>
       </div>
     </form>

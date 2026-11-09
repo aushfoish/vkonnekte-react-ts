@@ -5,9 +5,13 @@ import { MainPageAuthorization } from "@/widgets/authorization-window";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import styles from './MainLayout.module.scss'
+import { useAuthStore } from "@/entities/user/model/useAuthStore";
+import { useLogout } from "@/shared/api/useLogout";
 
 export const MainLayout = () => {
   const [vidgetOpened, setVidgetOpened] = useState(false);
+  const loggedStatus = useAuthStore((state) => state.userIsLogged)
+  const logout = useLogout()
   
   return (
     <>
@@ -19,12 +23,9 @@ export const MainLayout = () => {
             setVidgetOpened(false)
           }
         }}
-        onUnauthorize={() => {
-          localStorage.removeItem("userdata");
-          window.location.reload();
-        }}
+        onUnauthorize={logout}
       />
-      <MainPageAuthorization />
+      {loggedStatus !== true && <MainPageAuthorization />}
 
       {vidgetOpened === true && <AudioMainpageVidget />}
 
