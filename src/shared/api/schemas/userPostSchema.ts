@@ -8,7 +8,12 @@ export const UserPostSchema = z.object({
   userPictureSrc: z.string(),
   imageContentSrc: z.string(),
   author_id: z.string().nullable(),
-  wall_id: z.string()
+  wall_id: z.string(),
+  author: z.object({
+    firstname: z.string().nullable(),
+    lastname: z.string().nullable(),
+    avatar: z.string().nullable()
+  })
 });
 
 export const UserPostsSchema = z.array(UserPostSchema)

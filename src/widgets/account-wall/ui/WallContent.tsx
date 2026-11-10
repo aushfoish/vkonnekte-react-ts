@@ -13,7 +13,7 @@ interface WallContentProps {
 
 export const WallContent = (props: WallContentProps) => {
   const { wallId } = props;
-  const { data: posts = [], isLoading, isError, refetch } = useFetchPosts(wallId);
+  const { data = [], isLoading, isError, refetch } = useFetchPosts(wallId);
   const {mutate: deletePost} = useDeletePost()
 
   useWallWebsocket(wallId);
@@ -28,7 +28,7 @@ export const WallContent = (props: WallContentProps) => {
 
   return (
     <div className={styles.wallContent}>
-      {posts.map((post) => (
+      {data.map((post) => (
         <motion.div
           layout
           key={post.id}

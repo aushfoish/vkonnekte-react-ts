@@ -11,7 +11,7 @@ export const useFetchMusic = () => {
       const playlistRes = await supabaseFetch(
         "https://tyekwqioulapfagzpswr.supabase.co/rest/v1/tracks", {
       });
-      if (!playlistRes.ok) {
+      if (!playlistRes?.ok) {
         throw new Error("Произошла чудовищная ошибка!!!");
       }
 
