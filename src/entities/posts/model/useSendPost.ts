@@ -32,7 +32,7 @@ export const useSendPost = () => {
         body: JSON.stringify(newPost),
       });
 
-      if (!response.ok) throw new Error(`Ошибка: ${response.status}`);
+      if (!response?.ok) throw new Error(`Ошибка: ${response?.status}`);
 
       const createdPosts = UserPostsSchema.parse(await response.json());
       return createdPosts[0];

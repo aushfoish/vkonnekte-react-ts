@@ -7,11 +7,14 @@ import { useMutation } from "@tanstack/react-query";
 
 export const useSendGraffity = () => {
   return useMutation({
-    mutationFn: async (readyBlob: Blob) => {
+    mutationFn: async (payload: {
+      readyBlob: Blob,
+      wallId: string
+    }) => {
       const bucket =
         "https://tyekwqioulapfagzpswr.supabase.co/storage/v1/object/pictures";
 
-      const blobUrl = await uploadPicture(readyBlob, bucket, "png");
+      const blobUrl = await uploadPicture(payload.readyBlob, bucket, "png");
       if (!blobUrl) {
         throw new Error("Не удалось загрузить граффити в хранилище");
       }
@@ -27,7 +30,7 @@ export const useSendGraffity = () => {
         userPictureSrc: userPic,
         imageContentSrc: blobUrl,
         author_id: currentUserId,
-        wall_id: currentUserId
+        wall_id: payload.wallId
       };
 
       const response = await supabaseFetch(
@@ -39,8 +42,8 @@ export const useSendGraffity = () => {
         },
       );
 
-      if (!response.ok)
-        throw new Error(`Ошибка создания поста: ${response.status}`);
+      if (!response?.ok)
+        throw new Error(`Ошибка создания поста: ${response?.status}`);
 
       const createdPosts = UserPostsSchema.parse(await response.json())
       return createdPosts

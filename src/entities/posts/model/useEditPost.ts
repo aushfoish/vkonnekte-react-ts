@@ -24,8 +24,8 @@ export const useEditPost = () => {
         body: JSON.stringify(updatedPost),
       });
 
-      if (!response.ok)
-        throw new Error(`Ошибка при редактировании поста: ${response.status}`);
+      if (!response?.ok)
+        throw new Error(`Ошибка при редактировании поста: ${response?.status}`);
 
       const createdPosts = UserPostsSchema.parse(await response.json())
       return createdPosts;

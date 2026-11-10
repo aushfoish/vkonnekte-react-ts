@@ -18,7 +18,7 @@ export const useFetchFriends = (userId: string | undefined) => {
         {},
       );
 
-      const friendshipsData = FriendlistSchema.parse(await friendsRes.json());
+      const friendshipsData = FriendlistSchema.parse(await friendsRes?.json());
       const friends = friendshipsData;
 
       const readyFriendlist = await Promise.all(
@@ -27,7 +27,7 @@ export const useFetchFriends = (userId: string | undefined) => {
             `/rest/v1/users?user_id=eq.${friend.friend_id}`,
             {},
           );
-          if (!friendItem.ok)
+          if (!friendItem?.ok)
             throw new Error("не удалось загрузить данные о друзьях");
           const friendsData = ProfilesSchema.parse(await friendItem.json());
           return friendsData[0];

@@ -8,7 +8,7 @@ export const useFetchPosts = (userId: string | null) => {
     queryFn: async () => {
       const postsRes = await supabaseFetch(`/rest/v1/posts?wall_id=eq.${userId}&order=date.desc`, {
       });
-      if (!postsRes.ok) throw new Error("Не удалось загрузить данные");
+      if (!postsRes?.ok) throw new Error("Не удалось загрузить данные");
 
       const postsData = UserPostsSchema.parse(await postsRes.json());
       return postsData

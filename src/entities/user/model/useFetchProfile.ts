@@ -12,7 +12,7 @@ export const useFetchProfile = (userId: string | undefined) => {
           method: "GET",
         }),
       ]);
-      if (!profileRes.ok) {
+      if (!profileRes?.ok) {
         throw new Error("Произошла чудовищная ошибка!!!")
       }
 

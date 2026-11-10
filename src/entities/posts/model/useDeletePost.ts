@@ -12,8 +12,8 @@ export const useDeletePost = () => {
           Prefer: "return=representation",
         },
       });
-      if (response.ok) console.log("пост удалён:", postId);
-      if (!response.ok) throw new Error(`пост не удалился: ${response.status}`);
+      if (response?.ok) console.log("пост удалён:", postId);
+      if (!response?.ok) throw new Error(`пост не удалился: ${response?.status}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
