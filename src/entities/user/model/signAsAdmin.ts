@@ -21,7 +21,7 @@ export const signAsAdmin = async (email: string, password: string) => {
     );
 
     if (!response.ok) {
-      deleteToken()
+      deleteToken();
       useAuthStore.setState({ isUserLoggining: false, userIsLogged: false });
       throw new Error("Ошибка авторизации");
     }
@@ -30,7 +30,11 @@ export const signAsAdmin = async (email: string, password: string) => {
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("refresh_token", data.refresh_token);
       localStorage.setItem("current_user_id", data.user.id);
-      useAuthStore.setState({isUserLoggining: false, userIsLogged: true, currentUserId: data.user.id})
+      useAuthStore.setState({
+        isUserLoggining: false,
+        userIsLogged: true,
+        currentUserId: data.user.id,
+      });
       return data;
     }
   } catch (error) {

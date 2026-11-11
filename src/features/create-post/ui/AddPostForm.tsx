@@ -35,7 +35,8 @@ export const AddPostForm = () => {
           setInputPost("");
         },
       },
-    );}
+    );
+  }
   };
 
   return (

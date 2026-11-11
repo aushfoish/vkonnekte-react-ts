@@ -1,4 +1,4 @@
-import { UserPostSchema, type UserPosts } from "@/shared/api/schemas/userPostSchema";
+// import { UserPostSchema, type UserPosts } from "@/shared/api/schemas/userPostSchema";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 
@@ -58,30 +58,48 @@ export const useWallWebsocket = (wallId: string) => {
 
       if (response.event === "postgres_changes") {
         const type = response.payload?.data?.type || response.payload?.type;
-
         if (type === "INSERT" && payload?.data?.record) {
-          const newPost = UserPostSchema.parse(payload.data.record);
-          queryClient.setQueryData<UserPosts>(
-            ["posts", wallId],
-            (oldPosts) => {
-              if (!oldPosts) return [newPost];
-              return [newPost, ...oldPosts];
-            },
-          );
-        } else if (type === "DELETE") {
-          const oldRecordID = payload?.data?.old_record.id;
-          if (oldRecordID !== undefined && oldRecordID !== null) {
-            queryClient.setQueryData<UserPosts>(
-              ["posts", wallId],
-              (oldpPosts) => {
-                if (!oldpPosts) return [];
-                return oldpPosts.filter((post) => post.id !== oldRecordID);
-              },
-            );
+          if (payload.data.record.wall_id === wallId) {
+            queryClient.invalidateQueries({ queryKey: ["posts", wallId] });
           }
+        }
+        if (type === "DELETE") {
+          queryClient.invalidateQueries({ queryKey: ["posts", wallId] });
         }
       }
     };
+
+    // ws.onmessage = (event) => {
+    //   if (isCancelled) return;
+    //   const response = JSON.parse(event.data);
+    //   const payload = response.payload;
+
+    //   if (response.event === "postgres_changes") {
+    //     const type = response.payload?.data?.type || response.payload?.type;
+
+    //     if (type === "INSERT" && payload?.data?.record) {
+    //       const newPost = UserPostSchema.parse(payload.data.record);
+    //       queryClient.setQueryData<UserPosts>(
+    //         ["posts", wallId],
+    //         (oldPosts) => {
+    //           if (!oldPosts) return [newPost];
+    //           return [newPost, ...oldPosts];
+    //         },
+    //       );
+    //     } else if (type === "DELETE") {
+    //       const oldRecordID = payload?.data?.old_record.id;
+    //       if (oldRecordID !== undefined && oldRecordID !== null) {
+    //         queryClient.setQueryData<UserPosts>(
+    //           ["posts", wallId],
+    //           (oldpPosts) => {
+    //             if (!oldpPosts) return [];
+    //             return oldpPosts.filter((post) => post.id !== oldRecordID);
+    //           },
+    //         );
+    //       }
+    //     }
+    //   }
+    // };
 
     ws.onerror = (error) => {
       if (!isCancelled) console.error("Ошибка WS:", error);

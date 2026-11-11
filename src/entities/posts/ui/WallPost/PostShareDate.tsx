@@ -1,31 +1,22 @@
-import styles from './WallPost.module.scss'
+import styles from "./WallPost.module.scss";
 interface PostShareAndDateProps {
-    date: string
+  date: string;
 }
 
-export const PostShareAndDate = (props:PostShareAndDateProps) => {
+export const PostShareAndDate = (props: PostShareAndDateProps) => {
+  const { date } = props;
 
-    const {
-        date
-    } = props
+  return (
+    <div className={styles.likeShareDate}>
+      <div className={styles.dateTime}>
+        <p className={styles.time}>{date}</p>
+      </div>
 
-    return (
-        <div className={styles.likeShareDate}>
+      <div className={styles.likeShareContainer}>
+        <div className={styles.like}>поделиться</div>
 
-                  <div className={styles.dateTime}>
-                    <p className={styles.time}>{date}</p>
-                  </div>
-
-                  <div className={styles.likeShareContainer}>
-                    <div className={styles.like}>
-                      поделиться
-                    </div>
-
-                    <div className={styles.like}>
-                      Мне нравится
-                    </div>
-                  </div>
-                  
-        </div>
-    )
-}
+        <div className={styles.like}>Мне нравится</div>
+      </div>
+    </div>
+  );
+};

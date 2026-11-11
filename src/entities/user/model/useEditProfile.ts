@@ -12,6 +12,7 @@ export const useEditProfile = () => {
         lastname: payload.lastname,
         bio: payload.bio,
         avatar: payload.avatar,
+        languages: payload.languages,
         city: payload.city,
         workplace: payload.workplace,
         birthday: payload.birthday,

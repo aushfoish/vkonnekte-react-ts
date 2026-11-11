@@ -1,7 +1,5 @@
-import { useAuthStore } from "@/entities/user/model/useAuthStore";
 import { supabaseFetch } from "@/shared/api";
-import type { postToSend } from "@/shared/api/schemas/postToSendSchema";
-import { UserPostsSchema } from "@/shared/api/schemas/userPostSchema";
+import { PostsSendSchema, type postToSend } from "@/shared/api/schemas/postToSendSchema";
 import { useMutation } from "@tanstack/react-query";
 
 export const useSendPost = () => {
@@ -12,13 +10,9 @@ export const useSendPost = () => {
       wallId: string
     }) => {
       const authorId = localStorage.getItem('current_user_id')
-      const userName = useAuthStore.getState().userName;
-      const userPic = useAuthStore.getState().userPic;
 
       const newPost: postToSend = {
         content: payload.content,
-        username: userName,
-        userPictureSrc: userPic,
         imageContentSrc: payload.contentPicture,
         author_id: authorId,
         wall_id: payload.wallId,
@@ -32,9 +26,9 @@ export const useSendPost = () => {
         body: JSON.stringify(newPost),
       });
 
-      if (!response.ok) throw new Error(`Ошибка: ${response.status}`);
+      if (!response?.ok) throw new Error(`Ошибка: ${response?.status}`);
 
-      const createdPosts = UserPostsSchema.parse(await response.json());
+      const createdPosts = PostsSendSchema.parse(await response.json());
       return createdPosts[0];
     },
     onSuccess: () => {},

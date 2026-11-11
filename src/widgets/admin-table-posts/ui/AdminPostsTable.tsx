@@ -27,12 +27,17 @@ export const AdminPostsTable = () => {
           id={post.id}
           content={post.content}
           date={post.date}
-          username={post.username}
-          userPictureSrc={post.userPictureSrc}
           imageContentSrc={post.imageContentSrc}
           onDelete={() => deletePost(post.id)}
           author_id={post.author_id}
           wall_id={post.wall_id}
+          author={(
+            {
+              firstname: post.author.firstname,
+              lastname: post.author.lastname,
+              avatar: post.author.avatar
+            }
+          )}
         />
       ))}
     </div>

@@ -6,9 +6,9 @@ export const useFetchPosts = (userId: string | null) => {
   return useQuery<UserPosts>({
     queryKey: ["posts", userId],
     queryFn: async () => {
-      const postsRes = await supabaseFetch(`/rest/v1/posts?wall_id=eq.${userId}&order=date.desc`, {
+      const postsRes = await supabaseFetch(`/rest/v1/posts?wall_id=eq.${userId}&order=date.desc&select=*,author:users!author_id(firstname, lastname, avatar)`, { // команда для постгрес, которая вытягивает метаданные автора по author_id, в скобочках пишем только то что нужно получить для отображения постов
       });
-      if (!postsRes.ok) throw new Error("Не удалось загрузить данные");
+      if (!postsRes?.ok) throw new Error("Не удалось загрузить данные");
 
       const postsData = UserPostsSchema.parse(await postsRes.json());
       return postsData

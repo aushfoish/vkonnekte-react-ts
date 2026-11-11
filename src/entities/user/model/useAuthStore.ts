@@ -69,7 +69,7 @@ export const useAuthStore = create<useAuthStore>((set) => ({
   //       userIsLogged: dataParse.userIsLogged,
   //       isUserLoggining: false
   //     });
-      
+
   //     return true;
   //   } catch (error) {
   //     console.error(error instanceof Error ? error.message : "invalid JSON");
@@ -80,21 +80,24 @@ export const useAuthStore = create<useAuthStore>((set) => ({
   // },
 
   adminAuthCheck: () => {
-    set({isUserLoggining: true, userIsLogged: false})
-    const currentUser = localStorage.getItem("current_user_id")
-    if (!currentUser) return false
+    set({ isUserLoggining: true, userIsLogged: false });
+    const currentUser = localStorage.getItem("current_user_id");
+    if (!currentUser) return false;
     try {
       if (currentUser) {
-        set({currentUserId: currentUser, isUserLoggining: false, userIsLogged: true})
-        return true
+        set({
+          currentUserId: currentUser,
+          isUserLoggining: false,
+          userIsLogged: true,
+        });
+        return true;
       }
     } catch (error) {
-      set({isUserLoggining: false, userIsLogged: false})
-      console.error(error instanceof Error ? error.message : "invalid JSON")
-      localStorage.removeItem("current_user_id")
-      return false
+      set({ isUserLoggining: false, userIsLogged: false });
+      console.error(error instanceof Error ? error.message : "invalid JSON");
+      localStorage.removeItem("current_user_id");
+      return false;
     }
-    
   },
 
   anonymous: () => {
@@ -102,13 +105,13 @@ export const useAuthStore = create<useAuthStore>((set) => ({
       userName: "Гость",
       userPic: placeholder,
       userIsLogged: true,
-    }
+    };
     set({
       userName: "Гость",
       userPic: placeholder,
-      userIsLogged: true
-    })
-    localStorage.setItem('userdata', JSON.stringify(guestData))
+      userIsLogged: true,
+    });
+    localStorage.setItem("userdata", JSON.stringify(guestData));
   },
 
   admin: async () => {
@@ -129,7 +132,11 @@ export const useAuthStore = create<useAuthStore>((set) => ({
 
       if (response.status === 403) {
         deleteToken();
-        set({ userIsAdmin: false, isUserLoggining: false, userIsLogged: false });
+        set({
+          userIsAdmin: false,
+          isUserLoggining: false,
+          userIsLogged: false,
+        });
       }
 
       if (response.status === 401) {
@@ -139,7 +146,11 @@ export const useAuthStore = create<useAuthStore>((set) => ({
           set({ userIsAdmin: false, isUserLoggining: false });
         }
         if (refresh === true) {
-          set({ userIsAdmin: true, isUserLoggining: false, userIsLogged: true });
+          set({
+            userIsAdmin: true,
+            isUserLoggining: false,
+            userIsLogged: true,
+          });
         }
       }
 

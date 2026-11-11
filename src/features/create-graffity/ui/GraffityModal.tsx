@@ -6,6 +6,7 @@ import { Button, ModalFooter } from "@/shared/ui";
 import { useState } from "react";
 import styles from "./GraffityUI.module.scss";
 import { useSendGraffity } from "@/entities/posts/model/useSendGraffity";
+import { useParams } from "react-router-dom";
 
 interface GraffityModalProps {
   onCloseModal: (value: boolean) => void;
@@ -17,7 +18,7 @@ export const GraffityModal = (props: GraffityModalProps) => {
   const [strokeStyle, setStrokeStyle] = useState("#3498db");
   const [lineWidth, setLinewidth] = useState(50);
   const [globalAlpha, setGlobalAlpha] = useState(0.7);
-
+  const {userId} = useParams()
   const { mutate: sendGraffity, isPending } = useSendGraffity();
 
   const { canvasRef, ctxClear } = useCanvasDrawing({
@@ -34,17 +35,22 @@ export const GraffityModal = (props: GraffityModalProps) => {
 
     canvas.toBlob(
       (readyBlob) => {
-        if (!readyBlob) return;
-
-        sendGraffity(readyBlob, {
-          onSuccess: () => {
-            ctxClear();
-            onCloseModal(false)
+        if (!readyBlob || !userId) return;
+        sendGraffity(
+          {
+            readyBlob: readyBlob,
+            wallId: userId
           },
-          onError: () => {
-            alert("ошибка при отправке граффити")
-          }
-        });
+          {
+            onSuccess: () => {
+              ctxClear();
+              onCloseModal(false)
+            },
+            onError: () => {
+              alert('не отправилось')
+            },
+          },
+        )
       },
       "image/png",
       1.0,

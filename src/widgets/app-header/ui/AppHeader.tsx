@@ -1,4 +1,3 @@
-import { CurrentUserWidget } from "../../../entities/user/ui/CurrentUserWidget/CurrentUserWidget";
 import styles from './Header.module.scss'
 
 interface AppHeaderProps {
@@ -16,7 +15,6 @@ export const AppHeader = (props: AppHeaderProps) => {
         <a>
           <span className={styles.headerBSign}>В</span>КОННЕКТЕ
         </a>
-          <CurrentUserWidget />
       </div>
       <nav className={styles.headerNav}>
         <ul className={styles.headerButtonsList}>
