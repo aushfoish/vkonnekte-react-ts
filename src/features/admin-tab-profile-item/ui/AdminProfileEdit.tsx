@@ -93,6 +93,7 @@ export const AdminProfileEdit = (props: AdminProfileEdit) => {
             value={editState.values.languages ?? ""}
             onChange={(e) => handleInput("languages", e.currentTarget.value)}
             placeholder="Укажите языки, на которых говорите.."
+            maxSigns={30}
           />
 
           <AdminProfileEditItem
