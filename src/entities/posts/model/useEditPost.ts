@@ -1,5 +1,5 @@
 import { supabaseFetch } from "@/shared/api";
-import { UserPostsSchema, type UserPost } from "@/shared/api/schemas/userPostSchema";
+import { EditedPostsSchema, type UserPost } from "@/shared/api/schemas/userPostSchema";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useEditPost = () => {
@@ -9,8 +9,6 @@ export const useEditPost = () => {
       const currentUserId = localStorage.getItem('current_user_id')
       const updatedPost = {
         content: payload.content,
-        username: payload.username,
-        userPictureSrc: payload.userPictureSrc,
         imageContentSrc: payload.imageContentSrc,
         author_id: currentUserId,
         wall_id: currentUserId
@@ -27,8 +25,8 @@ export const useEditPost = () => {
       if (!response?.ok)
         throw new Error(`Ошибка при редактировании поста: ${response?.status}`);
 
-      const createdPosts = UserPostsSchema.parse(await response.json())
-      return createdPosts;
+      const editedPosts = EditedPostsSchema.parse(await response.json())
+      return editedPosts;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });

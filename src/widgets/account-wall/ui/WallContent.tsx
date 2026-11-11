@@ -14,7 +14,7 @@ interface WallContentProps {
 export const WallContent = (props: WallContentProps) => {
   const { wallId } = props;
   const { data = [], isLoading, isError, refetch } = useFetchPosts(wallId);
-  const {mutate: deletePost} = useDeletePost()
+  const { mutate: deletePost } = useDeletePost();
 
   useWallWebsocket(wallId);
 
@@ -23,8 +23,8 @@ export const WallContent = (props: WallContentProps) => {
   }
 
   if (isError) {
-      <WallFetchError refetch={refetch}/>
-    }
+    <WallFetchError refetch={refetch} />;
+  }
 
   return (
     <div className={styles.wallContent}>
@@ -41,14 +41,14 @@ export const WallContent = (props: WallContentProps) => {
           }}
         >
           <AccountWallPost
-            deletePost={() => deletePost(post.id)}
-            alt={post.username}
-            userPicSrc={post.userPictureSrc}
+            onDelete={() => deletePost(post.id)}
             id={post.id}
-            text={post.content}
-            label={post.username}
+            content={post.content}
             date={post.date}
-            imgSrc={post.imageContentSrc}
+            imageContentSrc={post.imageContentSrc}
+            author_id={post.author_id}
+            wall_id={post.wall_id}
+            author={post.author}
           />
         </motion.div>
       ))}

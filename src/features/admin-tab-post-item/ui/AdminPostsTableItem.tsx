@@ -9,8 +9,6 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
     id,
     content,
     date,
-    username,
-    userPictureSrc,
     imageContentSrc,
     onDelete,
   } = props;
@@ -23,7 +21,7 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
   const edit = () => {
     setEditState({
       isEditing: true,
-      values: { content, username, userPictureSrc, imageContentSrc },
+      values: { content, imageContentSrc },
     });
   };
 
@@ -37,29 +35,7 @@ export const AdminPostsTableItem = (props: PostCardProps) => {
   return (
     <div className={style.adminPostsTableItem} key={id}>
       <div className={style.meta}>
-        <div className={style.userinf}>
-          {editState.isEditing ? (
-            <input
-              value={editState.values.username ?? ""}
-              onChange={(e) => handleInput("username", e.currentTarget.value)}
-            ></input>
-          ) : (
-            <div className={style.username}>{username}</div>
-          )}
-
-          {editState.isEditing ? (
-            <input
-              value={editState.values.userPictureSrc ?? ""}
-              onChange={(e) =>
-                handleInput("userPictureSrc", e.currentTarget.value)
-              }
-            ></input>
-          ) : (
-            <a className={style.userpic} href={userPictureSrc} target="_blank">
-              [userpic]
-            </a>
-          )}
-        </div>
+        
 
         <>
           {editState.isEditing ? (

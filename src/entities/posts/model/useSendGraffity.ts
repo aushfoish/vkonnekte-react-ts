@@ -1,7 +1,5 @@
-import { useAuthStore } from "@/entities/user/model/useAuthStore";
 import { supabaseFetch } from "@/shared/api";
-import type { postToSend } from "@/shared/api/schemas/postToSendSchema";
-import { UserPostsSchema } from "@/shared/api/schemas/userPostSchema";
+import { PostsSendSchema, type postToSend } from "@/shared/api/schemas/postToSendSchema";
 import { uploadPicture } from "@/shared/api/uploadPicture";
 import { useMutation } from "@tanstack/react-query";
 
@@ -19,15 +17,11 @@ export const useSendGraffity = () => {
         throw new Error("Не удалось загрузить граффити в хранилище");
       }
 
-      const userName = useAuthStore.getState().userName;
-      const userPic = useAuthStore.getState().userPic;
       const currentUserId = localStorage.getItem('current_user_id')
       
 
       const newPost: postToSend = {
         content: "",
-        username: userName,
-        userPictureSrc: userPic,
         imageContentSrc: blobUrl,
         author_id: currentUserId,
         wall_id: payload.wallId
@@ -45,7 +39,7 @@ export const useSendGraffity = () => {
       if (!response?.ok)
         throw new Error(`Ошибка создания поста: ${response?.status}`);
 
-      const createdPosts = UserPostsSchema.parse(await response.json())
+      const createdPosts = PostsSendSchema.parse(await response.json())
       return createdPosts
     },
 
