@@ -72,6 +72,7 @@ export const AdminProfileEdit = (props: AdminProfileEdit) => {
             value={editState.values.birthday ?? ""}
             onChange={(e) => handleInput("birthday", e.currentTarget.value)}
             placeholder="Введите вашу дату рождения.."
+            maxSigns={20}
           />
 
           <AdminProfileEditItem
