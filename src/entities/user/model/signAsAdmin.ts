@@ -7,7 +7,7 @@ const API_KEY = import.meta.env.VITE_SUPABASE_PUBLIC_KEY;
 
 export const signAsAdmin = async (email: string, password: string) => {
   try {
-    useAuthStore.setState({ isUserLoggining: true, userIsLogged: false });
+    useAuthStore.setState({ isUserLoggining: true, userIsLogged: false, authError: false });
     const response = await fetch(
       `${API_URL}/auth/v1/token?grant_type=password`,
       {
@@ -22,7 +22,7 @@ export const signAsAdmin = async (email: string, password: string) => {
 
     if (!response.ok) {
       deleteToken();
-      useAuthStore.setState({ isUserLoggining: false, userIsLogged: false });
+      useAuthStore.setState({ isUserLoggining: false, userIsLogged: false, authError: true });
       throw new Error("Ошибка авторизации");
     }
     if (response.ok) {
@@ -34,6 +34,7 @@ export const signAsAdmin = async (email: string, password: string) => {
         isUserLoggining: false,
         userIsLogged: true,
         currentUserId: data.user.id,
+        authError: false
       });
       return data;
     }
