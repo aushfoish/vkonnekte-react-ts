@@ -11,11 +11,11 @@ import { useAuthStore } from "@/entities/user/model/useAuthStore";
 export const AdminAuthModule = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isLogining, setIsLogining] = useState(false);
+  // const [isLogining, setIsLogining] = useState(false);
   const anonymous = useAuthStore((state) => state.anonymous);
+  const isLogining = useAuthStore((state) => state.isUserLoggining)
   
   const handleSubmit = () => {
-    setIsLogining(true);
     signAsAdmin(username, password);
   };
 
