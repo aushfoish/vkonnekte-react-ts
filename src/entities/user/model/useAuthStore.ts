@@ -25,6 +25,7 @@ interface useAuthStore {
   admin: () => Promise<void>;
   currentUserId: string | null;
   adminAuthCheck: () => void;
+  authError: boolean;
 }
 
 export const useAuthStore = create<useAuthStore>((set) => ({
@@ -35,6 +36,7 @@ export const useAuthStore = create<useAuthStore>((set) => ({
   userIsLogged: false,
   userIsAdmin: false,
   isUserLoggining: false,
+  authError: false,
 
   authorization: (username, userpic) => {
     set({ userName: username, userPic: userpic, userIsLogged: true });
