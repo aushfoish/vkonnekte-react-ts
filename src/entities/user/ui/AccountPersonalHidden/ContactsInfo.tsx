@@ -1,24 +1,41 @@
 import { PersonalInfo } from "@/shared/ui";
 import styles from "./AccountPersonalHidden.module.scss";
-import { useSelectBirthLocation, useSelectPhone, useSelectWebsite, useSelectWorkplace } from "../../model/useProfileData";
+import {
+  ContactsInfoCheck,
+  useSelectCity,
+  useSelectCountry,
+  useSelectPhone,
+  useSelectWebsite,
+  useSelectWorkplace,
+} from "../../model/useProfileData";
 
 export const ContactsInfo = () => {
-  
-  const country = useSelectBirthLocation() || ""
-  const mobile = useSelectPhone() || ""
-  const website = useSelectWebsite() || ""
-  const workplace = useSelectWorkplace() || ""
-  const dataExist = country || mobile || website || workplace
+  const country = useSelectCountry();
+  const city = useSelectCity();
+  const mobile = useSelectPhone();
+  const website = useSelectWebsite();
+  const workplace = useSelectWorkplace();
+  const check = ContactsInfoCheck();
 
-    if (dataExist) {
+  if (check)
     return (
       <div className={styles.contactsInfo}>
         <h3 className={styles.infoHeader}>Контактная информация</h3>
-        {country?.length > 0 && <PersonalInfo label="Место рождения" children={country}/>}
-        {workplace?.length > 0 && <PersonalInfo label="Место работы" children={workplace}/>}
-        {mobile?.length > 0 && <PersonalInfo label="Моб. Телефон" children={mobile} />}
-        {website?.length > 0 && <PersonalInfo label="Веб-сайт" children={website} />}
+        {country?.trim() && (
+          <PersonalInfo label="Место рождения" children={country} />
+        )}
+        {city?.trim() && (
+          <PersonalInfo label="Город проживания" children={city} />
+        )}
+        {workplace?.trim() && (
+          <PersonalInfo label="Место работы" children={workplace} />
+        )}
+        {mobile?.trim() && (
+          <PersonalInfo label="Моб. Телефон" children={mobile} />
+        )}
+        {website?.trim() && (
+          <PersonalInfo label="Веб-сайт" children={website} />
+        )}
       </div>
     );
-  }
 };

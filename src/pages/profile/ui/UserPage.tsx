@@ -1,15 +1,23 @@
+import { useAuthStore } from "@/entities/user/model/useAuthStore";
 import { AccountSection } from "./AccountSection";
 import { AccountTitle } from "@/entities/user";
 import { useFetchProfile } from "@/entities/user/model/useFetchProfile";
 import { FetchErrorModal } from "@/features/fetch-error/ui/FetchErrorModal";
 import { SkeletonMainPage } from "@/shared/ui/SkeletonMainPage";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 export const UserPage = () => {
   const { userId } = useParams();
+  const currentUserId = useAuthStore.getState().currentUserId
 
   const { isLoading, profile, isFetchPositive, refetch } =
     useFetchProfile(userId);
+
+  if (!currentUserId) {
+    return (
+      <Navigate to={`/auth`} />
+    )
+  }
 
   if (!profile && isFetchPositive === false)
     return (

@@ -80,7 +80,7 @@ export const useAuthStore = create<useAuthStore>((set) => ({
   // },
 
   adminAuthCheck: () => {
-    set({ isUserLoggining: true, userIsLogged: false });
+    
     const currentUser = localStorage.getItem("current_user_id");
     if (!currentUser) return false;
     try {

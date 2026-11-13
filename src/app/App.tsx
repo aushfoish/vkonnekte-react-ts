@@ -27,6 +27,13 @@ const router = createBrowserRouter([
           return { Component: AdminPage };
         },
       },
+      {
+        path: "auth",
+        lazy: async () => {
+          const { AuthorizationPage } = await import("@/pages/auth/ui/AuthorizationPage");
+          return { Component: AuthorizationPage }; 
+        }
+      }
     ],
   },
 ]);
