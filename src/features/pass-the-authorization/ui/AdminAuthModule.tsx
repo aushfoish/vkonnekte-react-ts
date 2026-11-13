@@ -4,12 +4,11 @@ import { useState } from "react";
 import { signAsAdmin } from "@/entities/user/model/signAsAdmin";
 import { useAuthStore } from "@/entities/user/model/useAuthStore";
 
-interface AdminAuthModule {
-  onClose: () => void;
-}
+// interface AdminAuthModule {
+//   onClose: () => void;
+// }
 
-export const AdminAuthModule = (props: AdminAuthModule) => {
-  const { onClose } = props;
+export const AdminAuthModule = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLogining, setIsLogining] = useState(false);
@@ -18,7 +17,6 @@ export const AdminAuthModule = (props: AdminAuthModule) => {
   const handleSubmit = () => {
     setIsLogining(true);
     signAsAdmin(username, password);
-    onClose();
   };
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,20 +74,20 @@ export const AdminAuthModule = (props: AdminAuthModule) => {
             onClick={handleSubmit}
           />
 
-          <Modal_button
+          {/* <Modal_button
             type="button"
             className={styles.option}
             onClick={() => {
               onClose();
             }}
             btnLabel="Регистрация"
-          />
+          /> */}
           <Modal_button
             type="button"
             className={styles.option}
             onClick={() => {
               anonymous();
-              onClose();
+              // onClose();
             }}
             btnLabel='Режим "Гостя"'
           />

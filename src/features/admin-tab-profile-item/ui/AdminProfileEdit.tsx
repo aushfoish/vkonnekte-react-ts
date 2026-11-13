@@ -72,6 +72,7 @@ export const AdminProfileEdit = (props: AdminProfileEdit) => {
             value={editState.values.birthday ?? ""}
             onChange={(e) => handleInput("birthday", e.currentTarget.value)}
             placeholder="Введите вашу дату рождения.."
+            maxSigns={20}
           />
 
           <AdminProfileEditItem
@@ -95,6 +96,17 @@ export const AdminProfileEdit = (props: AdminProfileEdit) => {
             placeholder="Укажите языки, на которых говорите.."
             maxSigns={30}
           />
+          
+          <AdminProfileEditItem
+            label="Страна проживания"
+            id="field-country"
+            rows={1}
+            name="country"
+            value={editState.values.country ?? ""}
+            onChange={(e) => handleInput("country", e.currentTarget.value)}
+            placeholder="Введите название вашей страны.."
+            maxSigns={40}
+          />
 
           <AdminProfileEditItem
             label="Место работы"
@@ -105,18 +117,6 @@ export const AdminProfileEdit = (props: AdminProfileEdit) => {
             onChange={(e) => handleInput("workplace", e.currentTarget.value)}
             placeholder="Введите ваше место работы.."
             maxSigns={50}
-          />
-
-
-          <AdminProfileEditItem
-            label="Страна проживания"
-            id="field-country"
-            rows={1}
-            name="country"
-            value={editState.values.country ?? ""}
-            onChange={(e) => handleInput("country", e.currentTarget.value)}
-            placeholder="Введите название вашей страны.."
-            maxSigns={40}
           />
 
           <AdminProfileEditItem

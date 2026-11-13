@@ -41,7 +41,7 @@ export const signAsAdmin = async (email: string, password: string) => {
     console.error(
       error instanceof Error
         ? error.message
-        : "неизвестная ошибка при регистрации",
+        : "неизвестная ошибка при авторизации",
       error,
     );
   }

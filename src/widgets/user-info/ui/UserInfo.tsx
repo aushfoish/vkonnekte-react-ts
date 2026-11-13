@@ -8,19 +8,20 @@ import {
 } from "@/entities/user";
 import { AccountWall } from "@/widgets/account-wall";
 import { AccountPersonalSpoilerButton } from "@/shared/ui/AccountSpoilerBtn";
-import styles from './UserInfo.module.scss'
-import { PersonalInfoCheck, ContactsInfoCheck } from "@/entities/user/model/useProfileData";
+import styles from "./UserInfo.module.scss";
+import {
+  PersonalInfoCheck,
+  ContactsInfoCheck,
+} from "@/entities/user/model/useProfileData";
 import { useParams } from "react-router-dom";
 
 export const UserInfo = () => {
-  const personalInfo = PersonalInfoCheck()
+  const personalInfo = PersonalInfoCheck();
   const contactsInfo = ContactsInfoCheck();
-  const isHiddenInfoExists =
-    (personalInfo) ||
-    (contactsInfo);
+  const isHiddenInfoExists = personalInfo || contactsInfo;
   const [isOpen, setIsOpen] = useState(false);
   const infoID = useId();
-  const {userId} = useParams()
+  const { userId } = useParams();
 
   return (
     <div className={styles.userInfo}>
@@ -53,7 +54,7 @@ export const UserInfo = () => {
 
       <AccountGallery />
 
-      {userId && <AccountWall wallId={userId}/>}
+      {userId && <AccountWall wallId={userId} />}
     </div>
   );
 };
