@@ -6,10 +6,12 @@ export const RootRedirect = () => {
 
   if (myId) {
     return <Navigate to={`profile/${myId}`} replace />;
-  }
+  } 
 
   if (!myId) {
     return <Navigate to ={`auth`} replace />
   }
+
+  
 
 };

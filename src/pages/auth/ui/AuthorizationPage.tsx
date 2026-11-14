@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 
 export const AuthorizationPage = () => {
   const currentUserId = useAuthStore((state) => state.currentUserId)
+  // const {userId} = useParams()
 
   if (!currentUserId)
     return (
@@ -16,4 +17,6 @@ export const AuthorizationPage = () => {
     return (
         <Navigate to={`/profile/${currentUserId}`} />
     )
+
+
 };

@@ -9,7 +9,7 @@ interface AppHeaderProps {
 export const AppHeader = (props: AppHeaderProps) => {
   const { onToggleMp3, onUnauthorize } = props;
 
-  const userLoggedCheck = useAuthStore.getState().currentUserId
+  const userLoggedCheck = useAuthStore((state) => state.currentUserId)
 
   
  
