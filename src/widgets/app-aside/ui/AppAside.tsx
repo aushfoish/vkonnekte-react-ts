@@ -16,7 +16,7 @@ export const AppAside = () => {
           {NAV_ITEMS.map((item) => {
           let path = item.id
           if (item.id === "my-page") {
-            path = loggedUser ? `profile/${loggedUser}` : `profile/c849ba0e-1a02-4d1b-8042-01d801e3c7b1`
+            path = loggedUser ? `profile/${loggedUser}` : `auth`
           }
           return (
            <AsideNavBtn

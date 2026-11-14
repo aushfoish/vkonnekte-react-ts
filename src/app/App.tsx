@@ -30,10 +30,11 @@ const router = createBrowserRouter([
       {
         path: "auth",
         lazy: async () => {
-          const { AuthorizationPage } = await import("@/pages/auth/ui/AuthorizationPage");
-          return { Component: AuthorizationPage }; 
-        }
-      }
+          const { AuthorizationPage } =
+            await import("@/pages/auth/ui/AuthorizationPage");
+          return { Component: AuthorizationPage };
+        },
+      },
     ],
   },
 ]);
