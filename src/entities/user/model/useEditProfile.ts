@@ -14,6 +14,7 @@ export const useEditProfile = () => {
         avatar: payload.avatar,
         languages: payload.languages,
         city: payload.city,
+        country: payload.country,
         workplace: payload.workplace,
         birthday: payload.birthday,
         birth_location: payload.birth_location,

@@ -9,11 +9,9 @@ export const AdminProfileView = ({profile}: {profile: ProfileItem} ) => {
       <PersonalInfo label="Ваша фамилия" children={profile?.lastname} />
       <PersonalInfo
         label="Ваше текущее фото профиля"
-        children={
-          <img
-            src={`${profile?.avatar}`}
-            style={{ maxHeight: 400, maxWidth: 250 }}
-          ></img>
+        children={profile.avatar 
+          ? <img src={`${profile?.avatar}`} style={{ maxHeight: 400, maxWidth: 250 }}></img>
+          : "фото не выбрано"
         }
       />
       <PersonalInfo label="Текущий статус" children={profile?.bio} />

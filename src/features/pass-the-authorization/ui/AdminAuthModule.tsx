@@ -1,31 +1,31 @@
-import { Button, Input, Loader, Modal_button } from "@/shared/ui";
+import { Button, ErrorMessage, Input, Loader } from "@/shared/ui";
 import styles from "./Auth.module.scss";
 import { useState } from "react";
 import { signAsAdmin } from "@/entities/user/model/signAsAdmin";
 import { useAuthStore } from "@/entities/user/model/useAuthStore";
 
-interface AdminAuthModule {
-  onClose: () => void;
-}
+// interface AdminAuthModule {
+//   onClose: () => void;
+// }
 
-export const AdminAuthModule = (props: AdminAuthModule) => {
-  const { onClose } = props;
+export const AdminAuthModule = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isLogining, setIsLogining] = useState(false);
-  const anonymous = useAuthStore((state) => state.anonymous);
+  // const anonymous = useAuthStore((state) => state.anonymous);
+  const isLogining = useAuthStore((state) => state.isUserLoggining)
+  const isError = useAuthStore((state) => state.authError)
   
   const handleSubmit = () => {
-    setIsLogining(true);
     signAsAdmin(username, password);
-    onClose();
   };
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    useAuthStore.setState({authError: false})
     setUsername(e.currentTarget.value);
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    useAuthStore.setState({authError: false})
     setPassword(e.currentTarget.value);
   };
 
@@ -47,14 +47,14 @@ export const AdminAuthModule = (props: AdminAuthModule) => {
           containerClass={styles.authInput}
         />
 
-        {/* {error && (
+        {isError && (
           <ErrorMessage
             classname="isError"
-            children={nameError}
+            children="Неправильный логин или пароль"
             id="auth-error"
             role="alert"
           />
-        )} */}
+        )}
 
         <Input
           id="userpic"
@@ -76,23 +76,22 @@ export const AdminAuthModule = (props: AdminAuthModule) => {
             onClick={handleSubmit}
           />
 
-          <Modal_button
+          {/* <Modal_button
             type="button"
             className={styles.option}
             onClick={() => {
               onClose();
             }}
             btnLabel="Регистрация"
-          />
-          <Modal_button
+          /> */}
+          {/* <Modal_button
             type="button"
             className={styles.option}
             onClick={() => {
               anonymous();
-              onClose();
             }}
             btnLabel='Режим "Гостя"'
-          />
+          /> */}
         </div>
       </div>
     </form>

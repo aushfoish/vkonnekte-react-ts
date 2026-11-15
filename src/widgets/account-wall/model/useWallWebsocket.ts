@@ -22,7 +22,6 @@ export const useWallWebsocket = (wallId: string) => {
         return;
       }
 
-      console.log("Вебсокет подключён");
       const subscribeMessage = {
         topic: "realtime:public:posts",
         event: "phx_join",

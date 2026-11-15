@@ -1,3 +1,4 @@
+// import { useAuthStore } from "@/entities/user/model/useAuthStore";
 import { AccountSection } from "./AccountSection";
 import { AccountTitle } from "@/entities/user";
 import { useFetchProfile } from "@/entities/user/model/useFetchProfile";
@@ -7,9 +8,16 @@ import { useParams } from "react-router-dom";
 
 export const UserPage = () => {
   const { userId } = useParams();
+  // const currentUserId = useAuthStore.getState().currentUserId
 
   const { isLoading, profile, isFetchPositive, refetch } =
     useFetchProfile(userId);
+
+  // if (!currentUserId) {
+  //   return (
+  //     <Navigate to={`/auth`} />
+  //   )
+  // }
 
   if (!profile && isFetchPositive === false)
     return (
