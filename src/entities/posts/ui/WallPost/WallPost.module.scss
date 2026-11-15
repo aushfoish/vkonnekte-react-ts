@@ -74,6 +74,14 @@
         color: var(--color-blue-500);
       }
     }
+    .commentSection {
+      display: flex;
+      flex-direction: column;
+      .commentsHeader {
+        margin-block: 0;
+        color: #546b87
+      }
+    }
   }
 }
 .option {

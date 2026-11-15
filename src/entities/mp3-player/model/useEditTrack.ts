@@ -20,8 +20,8 @@ export const useEditTrack = () => {
         body: JSON.stringify(updatedTrack),
       });
 
-      if (!response.ok)
-        throw new Error(`Ошибка при редактировании аудио: ${response.status}`);
+      if (!response?.ok)
+        throw new Error(`Ошибка при редактировании аудио: ${response?.status}`);
 
       const editedTracks = MusicItemsSchema.parse(await response.json())
       return editedTracks;

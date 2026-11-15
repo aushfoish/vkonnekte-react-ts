@@ -1,4 +1,3 @@
-export { type AccountWallPostProps } from "./ui/WallPost/AccountWallPost";
 
 export { AccountWallPost } from "./ui/WallPost/AccountWallPost";
 
