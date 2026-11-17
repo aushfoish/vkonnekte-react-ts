@@ -20,6 +20,7 @@ export const AccountWallPost = React.memo((props: PostCardProps) => {
   const { userId } = useParams();
 
   const wallIsMine = currentUserId === userId;
+  const postIsMine = currentUserId === author_id
 
   return (
     <div className={styles.postGenuinely} id={String(id)}>
@@ -36,7 +37,7 @@ export const AccountWallPost = React.memo((props: PostCardProps) => {
             label={`${author.firstname} ${author.lastname}`}
             authorId={author_id}
           />
-          {wallIsMine && onDelete && (
+          {(postIsMine || wallIsMine) && (
             <Button
               className={styles.option}
               onClick={onDelete}
