@@ -10,8 +10,7 @@ import { Button } from "@/shared/ui";
 import placeholder from "@/shared/assets/1aa4cedee524828a8ac40cb77adfa233.jpg";
 
 import type { PostCardProps } from "@/shared/api/schemas/userPostSchema";
-import { CommentariesContent } from "@/widgets/account-wall/ui/CommentariesContent";
-import { AddCommentForm } from "@/features/create-comment-form/ui/AddCommentForm";
+import { CommentsBlock } from "@/widgets/comments-block";
 
 export const AccountWallPost = React.memo((props: PostCardProps) => {
   const { id, author_id, content, imageContentSrc, author, date, onDelete } =
@@ -31,13 +30,7 @@ export const AccountWallPost = React.memo((props: PostCardProps) => {
       />
 
       <div className={styles.contentPost}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            width: "100%",
-            justifyContent: "space-between",
-          }}
+        <div className={styles.postOptions}
         >
           <PostAuthor
             label={`${author.firstname} ${author.lastname}`}
@@ -63,11 +56,7 @@ export const AccountWallPost = React.memo((props: PostCardProps) => {
         )}
 
         <PostShareAndDate date={date} />
-        <div className={styles.commentSection}>
-          <h6 className={styles.commentsHeader}>Комментарии</h6>
-          <CommentariesContent postId={String(id)} />
-          <AddCommentForm postId={(id)}/>
-        </div>
+        <CommentsBlock id={id} className={styles.commentSection} />
         
       </div>
     </div>

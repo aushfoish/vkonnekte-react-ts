@@ -1,10 +1,10 @@
 import { CommentariesContent } from "@/widgets/account-wall/ui/CommentariesContent";
 
-export const PostCommentaries = ({postId}: {postId: string}) => {
+export const PostCommentaries = ({postId}: {postId: number}) => {
 
   return (
     <>
-      <CommentariesContent postId={postId}/>
+      <CommentariesContent id={postId}/>
     </>
   );
 };

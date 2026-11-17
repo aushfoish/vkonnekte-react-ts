@@ -1,5 +1,5 @@
 import { supabaseFetch } from "@/shared/api";
-import { CommentsSendSchema, type commentToSend } from "@/shared/api/schemas/postToSendSchema";
+import { CommentsSendSchema, type commentToSend } from "@/shared/api/schemas/postCommSchema";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useSendComment = (postId: number) => {

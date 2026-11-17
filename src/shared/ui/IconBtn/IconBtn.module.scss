@@ -1,8 +1,11 @@
 .iconBtn {
-  display: inline;
+  display: flex;
   border-style: none;
   color: var(--color-blue-300);
   border: none;
   padding: 0;
+  background-color: transparent;
   cursor: pointer;
+  justify-content: center;
+  align-items: center;
 }

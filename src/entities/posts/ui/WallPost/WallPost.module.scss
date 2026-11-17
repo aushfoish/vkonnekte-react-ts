@@ -17,6 +17,13 @@
     width: 100%;
     gap: 10px;
     flex-wrap: wrap;
+    .postOptions {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+      
+    }
     .postHead {
       display: flex;
       align-items: center;

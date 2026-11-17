@@ -3,39 +3,94 @@ import { RefreshTokenSchema } from "@/shared/api/schemas/refreshTokenSchema";
 
 const API_URL = import.meta.env.VITE_SUPABASE_URL;
 const API_KEY = import.meta.env.VITE_SUPABASE_PUBLIC_KEY;
+let refreshPromise: Promise<boolean> | null = null;
 
 export const refreshToken = async () => {
-    try {
-      const response = await fetch(
-        `${API_URL}/auth/v1/token?grant_type=refresh_token`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Prefer: "return=representation",
-            apikey: API_KEY,
+  let result: boolean | null;
+  if (refreshPromise) return refreshPromise;
+  if (!refreshPromise)
+    refreshPromise = (async () => {
+      try {
+        const response = await fetch(
+          `${API_URL}/auth/v1/token?grant_type=refresh_token`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Prefer: "return=representation",
+              apikey: API_KEY,
+            },
+            body: JSON.stringify({
+              refresh_token: localStorage.getItem("refresh_token"),
+            }),
           },
-          body: JSON.stringify({
-            refresh_token: localStorage.getItem("refresh_token"),
-          }),
-        },
-      );
-      if (!response.ok) {
-        console.log(`'ошибка обновления токена:' ${response.status}`);
+        );
+        if (!response.ok) {
+          console.log(`'ошибка обновления токена:' ${response.status}`);
+          return false;
+        }
+        if (response.ok) {
+          const data = RefreshTokenSchema.parse(await response.json());
+          addToken(data);
+          console.log("токен обновлён");
+          return true;
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error(error.message);
+        } else {
+          console.log(error);
+        }
         return false;
-      }
-      if (response.ok) {
-        const data = RefreshTokenSchema.parse(await response.json());
-        addToken(data)
-        console.log("токен обновлён");
-        return true;
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error(error.message);
-      } else {
-        console.log(error)
-      }
-      return false;
-    }
-  };
+      } return false
+    } 
+  )();
+  try {
+    result = await refreshPromise;
+  } finally {
+    refreshPromise = null;
+  }
+  return result;
+};
+// import { addToken } from "@/shared/api/addToken";
+// import { RefreshTokenSchema } from "@/shared/api/schemas/refreshTokenSchema";
+
+// const API_URL = import.meta.env.VITE_SUPABASE_URL;
+// const API_KEY = import.meta.env.VITE_SUPABASE_PUBLIC_KEY;
+// let refreshPromise: Promise<boolean> | null = null
+
+// export const refreshToken = async () => {
+//     try {
+//       const response = await fetch(
+//         `${API_URL}/auth/v1/token?grant_type=refresh_token`,
+//         {
+//           method: "POST",
+//           headers: {
+//             "Content-Type": "application/json",
+//             Prefer: "return=representation",
+//             apikey: API_KEY,
+//           },
+//           body: JSON.stringify({
+//             refresh_token: localStorage.getItem("refresh_token"),
+//           }),
+//         },
+//       );
+//       if (!response.ok) {
+//         console.log(`'ошибка обновления токена:' ${response.status}`);
+//         return false;
+//       }
+//       if (response.ok) {
+//         const data = RefreshTokenSchema.parse(await response.json());
+//         addToken(data)
+//         console.log("токен обновлён");
+//         return true;
+//       }
+//     } catch (error) {
+//       if (error instanceof Error) {
+//         console.error(error.message);
+//       } else {
+//         console.log(error)
+//       }
+//       return false;
+//     }
+//   };

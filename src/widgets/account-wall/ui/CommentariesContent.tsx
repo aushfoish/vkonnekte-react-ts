@@ -8,14 +8,14 @@ import styles from "./AccountWall.module.scss";
 import { useFetchComments } from "@/entities/posts/model/useComment";
 import { PostComment } from "@/entities/posts/ui/WallPost/PostComment";
 
-interface CommentariesContent {
-  postId: string;
+interface props {
+  id: number
 }
 
-export const CommentariesContent = (props: CommentariesContent) => {
-  const { postId } = props;
+export const CommentariesContent = (props: props) => {
+  const { id } = props;
 //   const { data = [], isLoading, isError, refetch } = useFetchComments(postId);
-  const { data = [] } = useFetchComments(postId);
+  const { data = [] } = useFetchComments(id);
 //   const { mutate: deletePost } = useDeletePost();
 
 //   useWallWebsocket(wallId);
@@ -27,7 +27,7 @@ export const CommentariesContent = (props: CommentariesContent) => {
 //   if (isError) {
 //     <WallFetchError refetch={refetch} />;
 //   }
-
+  if (data.length > 0)
   return (
     <div className={styles.wallContent}>
       {data.map((post) => (
@@ -47,9 +47,7 @@ export const CommentariesContent = (props: CommentariesContent) => {
             id={post.id}
             content={post.content}
             date={post.date}
-            imageContentSrc={post.imageContentSrc}
             author_id={post.author_id}
-            wall_id={post.wall_id}
             author={post.author}
           />
         </motion.div>

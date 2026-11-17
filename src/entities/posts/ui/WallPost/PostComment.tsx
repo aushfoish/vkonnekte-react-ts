@@ -2,14 +2,14 @@ import { PostAuthor } from "@/entities/posts/ui/WallPost/PostAuthor";
 import { PostAuthorPic } from "@/entities/posts/ui/WallPost/PostAuthorPic";
 import { PostShareAndDate } from "@/entities/posts/ui/WallPost/PostShareDate";
 import { PostText } from "@/entities/posts/ui/WallPost/PostText";
-import type { PostCardProps } from "@/shared/api/schemas/userPostSchema";
 import placeholder from "@/shared/assets/1aa4cedee524828a8ac40cb77adfa233.jpg";
 import styles from "./WallPost.module.scss";
+import type { PostCommProps } from "@/shared/api/schemas/postCommSchema";
 
 
-export const PostComment = (props: PostCardProps) => {
+export const PostComment = (props: PostCommProps) => {
   const {
-    author_id, author, content, imageContentSrc, date,id
+    author_id, author, content, date,id
   } = props;
   return (
     <div className={styles.postGenuinely} id={String(id)}>
@@ -43,13 +43,13 @@ export const PostComment = (props: PostCardProps) => {
 
         {content && <PostText text={content} id={id} />}
 
-        {imageContentSrc && (
+        {/* {imageContentSrc && (
           <img
             className={styles.contentPicture}
             src={imageContentSrc}
             alt={`Графическое изображение, опубликованное пользователем ${author.firstname} ${author.lastname}`}
           ></img>
-        )}
+        )} */}
 
         <PostShareAndDate date={date} />
       </div>
