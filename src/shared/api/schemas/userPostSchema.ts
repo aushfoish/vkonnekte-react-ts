@@ -22,6 +22,8 @@ export const PostToEditSchema = UserPostSchema.omit({
   author: true,
 })
 
+
+
 export const EditedPostsSchema = z.array(PostToEditSchema)
 
 export type SentPost = z.infer<typeof PostToEditSchema>

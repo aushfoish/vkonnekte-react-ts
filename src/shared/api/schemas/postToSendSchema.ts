@@ -7,6 +7,10 @@ export const PostToSendSchema = z.object({
   wall_id: z.string(),
 });
 
+
+
+
 export const PostsSendSchema = z.array(PostToSendSchema)
 
 export type postToSend = z.infer<typeof PostToSendSchema>;
+

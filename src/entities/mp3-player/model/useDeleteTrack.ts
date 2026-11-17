@@ -12,8 +12,8 @@ export const useDeleteTrack = () => {
           Prefer: "return=representation",
         },
       });
-      if (response.ok) console.log("трек удалён:", trackId);
-      if (!response.ok) throw new Error(`трек не удалился: ${response.status}`);
+      if (response?.ok) console.log("трек удалён:", trackId);
+      if (!response?.ok) throw new Error(`трек не удалился: ${response?.status}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tracks"] });
