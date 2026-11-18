@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "admin",
+        path: "edit",
         lazy: async () => {
           const { AdminPage } = await import("@/pages/admin/ui/AdminPage");
           return { Component: AdminPage };

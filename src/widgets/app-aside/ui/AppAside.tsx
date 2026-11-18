@@ -4,7 +4,7 @@ import { useAuthStore } from "@/entities/user/model/useAuthStore";
 
 const NAV_ITEMS = [
   { id: "my-page", label: "Моя Страница" },
-  { id: "my-audio", label: "Мои Аудиозаписи" },
+  { id: "my-audio", label: "Аудиозаписи" },
 ];
 
 export const AppAside = () => {

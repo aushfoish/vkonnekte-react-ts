@@ -25,6 +25,7 @@ export const UserProfileSchema = z.object({
   about_me: z.string().nullable(),
 })
 
+
 export type ProfileItem = z.infer<typeof UserProfileSchema>
 
 export const ProfilesSchema = z.array(UserProfileSchema)
