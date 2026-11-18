@@ -5,12 +5,17 @@ import { PostText } from "@/entities/posts/ui/WallPost/PostText";
 import placeholder from "@/shared/assets/1aa4cedee524828a8ac40cb77adfa233.jpg";
 import styles from "./WallPost.module.scss";
 import type { PostCommProps } from "@/shared/api/schemas/postCommSchema";
+import { useAuthStore } from "@/entities/user/model/useAuthStore";
+import { Button } from "@/shared/ui";
 
 
 export const PostComment = (props: PostCommProps) => {
   const {
-    author_id, author, content, date,id
+    author_id, author, content, date,id, onDelete
   } = props;
+  const authorizedUserId = useAuthStore((state) => state.currentUserId)
+  const commIsMine = authorizedUserId === author_id
+
   return (
     <div className={styles.postGenuinely} id={String(id)}>
       <PostAuthorPic
@@ -32,13 +37,13 @@ export const PostComment = (props: PostCommProps) => {
             label={`${author.firstname} ${author.lastname}`}
             authorId={author_id}
           />
-          {/* {commIsMine && onDelete && (
+          {commIsMine && (
             <Button
               className={styles.option}
               onClick={onDelete}
               children="Удалить пост"
             />
-          )} */}
+          )}
         </div>
 
         {content && <PostText text={content} id={id} />}

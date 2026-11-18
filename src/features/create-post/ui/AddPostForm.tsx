@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { lazy, useState } from "react";
 import { Attachments } from "./Attachments";
 import styles from "./CreatePost.module.scss";
-import { useSendPost } from "@/entities/posts/model/useSendPost";
+import { useSendPost } from "@/entities/posts/model/posts/useSendPost";
 import { useParams } from "react-router-dom";
 
 export const AddPostForm = () => {

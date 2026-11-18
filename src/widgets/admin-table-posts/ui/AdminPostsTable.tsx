@@ -1,6 +1,6 @@
-import { useFetchPosts } from "@/entities/posts/model/usePosts";
+import { useFetchPosts } from "@/entities/posts/model/posts/usePosts";
 import style from './AdminPostsTable.module.scss'
-import { useDeletePost } from "@/entities/posts/model/useDeletePost";
+import { useDeletePost } from "@/entities/posts/model/posts/useDeletePost";
 import { AdminPostsTableItem } from "@/features/admin-tab-post-item";
 import { useAuthStore } from "@/entities/user/model/useAuthStore";
 

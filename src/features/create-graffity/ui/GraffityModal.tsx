@@ -5,7 +5,7 @@ import { useCanvasDrawing } from "@/shared/lib/hooks/useCanvasDrawing";
 import { Button, ModalFooter } from "@/shared/ui";
 import { useState } from "react";
 import styles from "./GraffityUI.module.scss";
-import { useSendGraffity } from "@/entities/posts/model/useSendGraffity";
+import { useSendGraffity } from "@/entities/posts/model/posts/useSendGraffity";
 import { useParams } from "react-router-dom";
 
 interface GraffityModalProps {
