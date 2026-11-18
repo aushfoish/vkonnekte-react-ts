@@ -8,9 +8,8 @@
 //   onClose: () => void;
 // }
 
-export const GuestAuthMode = () => {
+// export const GuestAuthMode = (props: AuthorizationModuleProps) => {
 //   const { onClose } = props;
-
 //   const [username, setUsername] = useState("");
 //   const [userpic, setUserpic] = useState("");
 //   const [picUploading, setPicUploading] = useState(false);
@@ -18,11 +17,9 @@ export const GuestAuthMode = () => {
 //     'Добавьте имя и фото, или выберите вариант "Не регистрироваться"',
 //   );
 //   const [error, setError] = useState(false);
-
 //   const authorization = useAuthStore((state) => state.authorization);
 //   const authCheck = useAuthStore((state) => state.authCheck);
 //   const anonymous = useAuthStore((state) => state.anonymous);
-
 //   useEffect(() => {
 //     const loginData = localStorage.getItem("userdata");
 //     if (loginData) {
@@ -38,22 +35,24 @@ export const GuestAuthMode = () => {
 //       setUserpic(userpicUrl);
 //       if (error) setError(false);
 //     } else if (userpicUrl === false) {
-//       setError(true)
-//       setNameError('Недопустимый формат или размер. Допустимы только jpg/png файлы не более 2 мб')
+//       setError(true);
+//       setNameError(
+//         "Недопустимый формат или размер. Допустимы только jpg/png файлы не более 2 мб",
+//       );
 //       setPicUploading(false);
-//       setUserpic('')
+//       setUserpic("");
 //     }
 //     setPicUploading(false);
 //   };
-
 //   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 //     setUsername(e.currentTarget.value);
 //     if (error) {
 //       setError(false);
-//       setNameError('Добавьте имя и фото, или выберите вариант "Не регистрироваться"')
+//       setNameError(
+//         'Добавьте имя и фото, или выберите вариант "Не регистрироваться"',
+//       );
 //     }
 //   };
-
 //   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
 //     e.preventDefault();
 //     const inputsCheck = username !== "" && userpic !== "";
@@ -66,66 +65,63 @@ export const GuestAuthMode = () => {
 //     }
 //   };
 
-  return (
-    <>
-    </>
-    // <form className={styles.authForm} onSubmit={handleSubmit}>
-    //   <h3 className={styles.authHeader}>Войдите как гость</h3>
-    //   <div className={styles.inputsContainer}>
-    //     <Input
-    //       maxLength={25}
-    //       id="username"
-    //       placeholder="введите ваше имя.."
-    //       type="text"
-    //       label="Введите имя"
-    //       className={styles.authInputLabel}
-    //       value={username}
-    //       classInput={styles.authInput}
-    //       onChange={handleUsernameChange}
-    //       containerClass={styles.authInput}
-    //       aria-invalid={!!nameError}
-    //       aria-describedby={nameError ? "auth-error" : undefined}
-    //     />
-
-    //     {error && (
-    //       <ErrorMessage
-    //         classname="isError"
-    //         children={nameError}
-    //         id="auth-error"
-    //         role="alert"
-    //       />
-    //     )}
-
-    //     <Input
-    //       id="userpic"
-    //       placeholder="добавьте ваше фото.."
-    //       type="file"
-    //       label="Добавьте ваше фото"
-    //       className={styles.authInputLabel}
-    //       classInput={styles.authInput}
-    //       containerClass={styles.authInput}
-    //       onChange={onUploadFile}
-    //       accept="image/*"
-    //     />
-    //     <div className={styles.authButtons}>
-    //       <Button
-    //         isLoading={picUploading}
-    //         type="submit"
-    //         className={styles.auth}
-    //         children={picUploading ? <Loader /> : "Зарегистрироваться"}
-    //       />
-
-    //       <Modal_button
-    //         type="button"
-    //         className={styles.option}
-    //         onClick={() => {
-    //           anonymous();
-    //           onClose();
-    //         }}
-    //         btnLabel="Не регистрироваться"
-    //       />
-    //     </div>
-    //   </div>
-    // </form>
-  );
-};
+//   return (
+//     <>
+//       <form className={styles.authForm} onSubmit={handleSubmit}>
+//         <h3 className={styles.authHeader}>Войдите как гость</h3>
+//         <div className={styles.inputsContainer}>
+//           <Input
+//             maxLength={25}
+//             id="username"
+//             placeholder="введите ваше имя.."
+//             type="text"
+//             label="Введите имя"
+//             className={styles.authInputLabel}
+//             value={username}
+//             classInput={styles.authInput}
+//             onChange={handleUsernameChange}
+//             containerClass={styles.authInput}
+//             aria-invalid={!!nameError}
+//             aria-describedby={nameError ? "auth-error" : undefined}
+//           />
+//           {error && (
+//             <ErrorMessage
+//               classname="isError"
+//               children={nameError}
+//               id="auth-error"
+//               role="alert"
+//             />
+//           )}
+//           <Input
+//             id="userpic"
+//             placeholder="добавьте ваше фото.."
+//             type="file"
+//             label="Добавьте ваше фото"
+//             className={styles.authInputLabel}
+//             classInput={styles.authInput}
+//             containerClass={styles.authInput}
+//             onChange={onUploadFile}
+//             accept="image/*"
+//           />
+//           <div className={styles.authButtons}>
+//             <Button
+//               isLoading={picUploading}
+//               type="submit"
+//               className={styles.auth}
+//               children={picUploading ? <Loader /> : "Зарегистрироваться"}
+//             />
+//             <Modal_button
+//               type="button"
+//               className={styles.option}
+//               onClick={() => {
+//                 anonymous();
+//                 onClose();
+//               }}
+//               btnLabel="Не регистрироваться"
+//             />
+//           </div>
+//         </div>
+//       </form>
+//     </>
+//   );
+// };

@@ -12,11 +12,11 @@ export const PostShareAndDate = (props: PostShareAndDateProps) => {
         <p className={styles.time}>{date}</p>
       </div>
 
-      <div className={styles.likeShareContainer}>
+      {/* <div className={styles.likeShareContainer}>
         <div className={styles.like}>поделиться</div>
 
         <div className={styles.like}>Мне нравится</div>
-      </div>
+      </div> */}
     </div>
   );
 };

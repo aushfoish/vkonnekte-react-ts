@@ -9,7 +9,7 @@ export const handleFileReader = (
   return new Promise((resolve) => {
     const files = e.currentTarget.files;
 
-    const maxSize = 2 * 1024 * 1024;
+    const maxSize = 2 * 1024 * 1024; // максимальный размер файла в байтах
 
     if (files && files.length > 0) {
       const file = files[0];
