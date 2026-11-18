@@ -1,11 +1,11 @@
 import { AccountWallPost } from "@/entities/posts";
 import { motion } from "framer-motion";
 import styles from "./AccountWall.module.scss";
-import { useFetchPosts } from "@/entities/posts/model/usePosts";
+import { useFetchPosts } from "@/entities/posts/model/posts/usePosts";
 import { useWallWebsocket } from "@/widgets/account-wall/model/useWallWebsocket";
 import { SkeletonWall } from "@/shared/ui/SkeletonMainPage/SkeletonWall";
 import { WallFetchError } from "@/widgets/account-wall/ui/WallFetchError";
-import { useDeletePost } from "@/entities/posts/model/useDeletePost";
+import { useDeletePost } from "@/entities/posts/model/posts/useDeletePost";
 
 interface WallContentProps {
   wallId: string;

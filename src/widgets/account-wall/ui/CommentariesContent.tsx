@@ -5,8 +5,9 @@ import styles from "./AccountWall.module.scss";
 // import { SkeletonWall } from "@/shared/ui/SkeletonMainPage/SkeletonWall";
 // import { WallFetchError } from "@/widgets/account-wall/ui/WallFetchError";
 // import { useDeletePost } from "@/entities/posts/model/useDeletePost";
-import { useFetchComments } from "@/entities/posts/model/useComment";
+import { useFetchComments } from "@/entities/posts/model/comments/useComment";
 import { PostComment } from "@/entities/posts/ui/WallPost/PostComment";
+import { useDeleteComm } from "@/entities/posts/model/comments/useDeleteComment";
 
 interface props {
   id: number
@@ -16,7 +17,7 @@ export const CommentariesContent = (props: props) => {
   const { id } = props;
 //   const { data = [], isLoading, isError, refetch } = useFetchComments(postId);
   const { data = [] } = useFetchComments(id);
-//   const { mutate: deletePost } = useDeletePost();
+  const { mutate: deleteComment } = useDeleteComm()
 
 //   useWallWebsocket(wallId);
 
@@ -43,7 +44,7 @@ export const CommentariesContent = (props: props) => {
           }}
         >
           <PostComment
-            // onDelete={() => deletePost(post.id)}
+            onDelete={() => deleteComment(post.id)}
             id={post.id}
             content={post.content}
             date={post.date}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import style from "./AdminPostsTableItem.module.scss";
 import type { PostCardProps } from "@/shared/api/schemas/userPostSchema";
-import { useEditPost } from "@/entities/posts/model/useEditPost";
+import { useEditPost } from "@/entities/posts/model/posts/useEditPost";
 import { type EditState } from "@/features/admin-tab-post-item/schemas/EditPost";
 
 export const AdminPostsTableItem = (props: PostCardProps) => {

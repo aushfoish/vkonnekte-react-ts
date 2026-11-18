@@ -6,6 +6,12 @@ export const PostCommSchema = UserPostSchema.omit({
   imageContentSrc: true,
 })
 
+export type PostComm = z.infer<typeof PostCommSchema>
+export interface PostCommProps extends PostComm {
+  onDelete?: () => void,
+  onEdit?: () => void
+}
+
 export const PostsCommentariesSchema = z.array(PostCommSchema)
 
 export const CommentToSendSchema = z.object({
@@ -17,6 +23,5 @@ export const CommentToSendSchema = z.object({
 
 export const CommentsSendSchema = z.array(CommentToSendSchema)
 
-export type PostCommProps = z.infer<typeof PostCommSchema>
 export type commentToSend = z.infer<typeof CommentToSendSchema>
 export type postsComments = z.infer<typeof PostsCommentariesSchema>

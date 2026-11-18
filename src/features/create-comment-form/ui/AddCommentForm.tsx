@@ -8,7 +8,7 @@ import { AudioButton, Input } from "@/shared/ui";
 import { AnimatePresence, motion } from "framer-motion";
 import { lazy, useState } from "react";
 import styles from "./CreatePost.module.scss";
-import { useSendComment } from "@/entities/posts/model/useSendComment";
+import { useSendComment } from "@/entities/posts/model/comments/useSendComment";
 import { CommentSchema } from "@/shared/api/schemas/commentFormSchema";
 
 interface AddCommentForm {
