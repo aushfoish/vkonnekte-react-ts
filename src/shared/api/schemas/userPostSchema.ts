@@ -1,3 +1,4 @@
+import type React from "react";
 import z from "zod";
 
 export const UserPostSchema = z.object({
@@ -31,6 +32,17 @@ export type SentPost = z.infer<typeof PostToEditSchema>
 export interface PostCardProps extends UserPost {
     onDelete?: () => void;
     onEdit?: () => void;
+    
+}
+
+export interface EditCardProps extends Omit<UserPost, 'wall_id' | 'date'> {
+    onDelete?: () => void;
+    onEdit?: () => void;
+    editContentValue: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    editImageValue: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    onEditStateChange?: () => void;
+    onSubmitEvent: () => void;
+
 }
 
 
