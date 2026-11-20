@@ -1,11 +1,9 @@
 import { AdminProfileEditItem } from "@/shared/ui/AdminProfileEdit/AdminProfileEditItem";
 import styles from "./AdminProfileTabItem.module.scss";
 import type { EditProfileState } from "../schemas/EditProfile";
-// import { handleFileReader } from "@/shared/lib/file/useFileReader";
-// import { Input } from "@/shared/ui";
 // import { Input } from "@/shared/ui";
 // import { useState } from "react";
-// import { handleFileReader } from "@/shared/lib/file/useFileReader";
+// import { handleFileReaderAvatar } from "@/shared/lib/file/useFileReaderAvatars";
 
 interface AdminProfileEdit {
   editState: EditProfileState;
@@ -23,7 +21,7 @@ export const AdminProfileEdit = (props: AdminProfileEdit) => {
   // const [error, setError] = useState(false);
 
   // const onUploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const userpicUrl = await handleFileReader(e, "jpg", 40, 40);
+  //   const userpicUrl = await handleFileReaderAvatar(e);
   //   console.log(userpicUrl)
   // };
 
@@ -58,7 +56,7 @@ export const AdminProfileEdit = (props: AdminProfileEdit) => {
         maxSigns={20}
       />
 
-      <div style={{ display: "flex", flexDirection: "row" }}>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         <AdminProfileEditItem
           label="Ваше текущее фото профиля"
           id="field-avatar"

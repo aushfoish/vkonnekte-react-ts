@@ -7,6 +7,7 @@ import styles from "./AdminProfileTabItem.module.scss";
 import { useState } from "react";
 import { AdminProfileView } from "@/widgets/admin-profile-view/ui/AdminProfileView";
 import { AdminProfileEdit } from "./AdminProfileEdit";
+import { Button } from "@/shared/ui";
 
 export const AdminProfileTabItem = (props: ProfileItemProps) => {
   const { id, user_id, firstname, ...editableFields } = props;
@@ -74,8 +75,7 @@ export const AdminProfileTabItem = (props: ProfileItemProps) => {
           {profile && <AdminProfileView profile={profile} />}
         </div>
         <div>
-          <button onClick={() => edit()}>[Редактировать]</button>
-          <button>[Удалить]</button>
+          <Button className={styles.editProfile} onClick={() => edit()} children="Редактировать профиль" />
         </div>
       </div>
     );

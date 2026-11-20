@@ -5,6 +5,7 @@ import { useAuthStore } from '@/entities/user/model/useAuthStore'
 
 export const AccountTitle = () => {
     const {userId} = useParams()
+    console.log(userId)
     const currentUserId = useAuthStore((state) => state.currentUserId)
     const userIsOwner = userId === currentUserId
 
