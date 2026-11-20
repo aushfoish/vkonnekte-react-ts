@@ -1,6 +1,11 @@
 .profileTab {
     display: flex;
     flex-direction: column;
-    padding: 0;
+    padding: 5px;
     margin: 0;
+}
+.editProfile {
+    padding: 10px;
+    font-size: 13px;
+    margin-top: 12px;
 }
