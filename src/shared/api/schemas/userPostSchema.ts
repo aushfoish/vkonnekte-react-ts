@@ -9,7 +9,7 @@ export const UserPostSchema = z.object({
   wall_id: z.string(),
   author_id: z.string().nullable(),
   author: z.object({
-    avatar: z.string().nullable(),
+    avatar_mini_50: z.string().nullable(),
     lastname: z.string().nullable(),
     firstname: z.string().nullable(),
   })

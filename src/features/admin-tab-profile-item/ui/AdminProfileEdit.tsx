@@ -1,9 +1,7 @@
 import { AdminProfileEditItem } from "@/shared/ui/AdminProfileEdit/AdminProfileEditItem";
 import styles from "./AdminProfileTabItem.module.scss";
 import type { EditProfileState } from "../schemas/EditProfile";
-// import { Input } from "@/shared/ui";
-// import { useState } from "react";
-// import { handleFileReaderAvatar } from "@/shared/lib/file/useFileReaderAvatars";
+
 
 interface AdminProfileEdit {
   editState: EditProfileState;
@@ -12,18 +10,7 @@ interface AdminProfileEdit {
 
 export const AdminProfileEdit = (props: AdminProfileEdit) => {
   const { editState, handleInput } = props;
-  //   const [userpic, setUserpic] = useState("");
-
-  // const [picUploading, setPicUploading] = useState(false);
-  // const [nameError, setNameError] = useState(
-  //   'Добавьте имя и фото, или выберите вариант "Не регистрироваться"',
-  // );
-  // const [error, setError] = useState(false);
-
-  // const onUploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const userpicUrl = await handleFileReaderAvatar(e);
-  //   console.log(userpicUrl)
-  // };
+    
 
   return (
     <ul
@@ -34,6 +21,18 @@ export const AdminProfileEdit = (props: AdminProfileEdit) => {
         alignItems: "flex-start",
       }}
     >
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <AdminProfileEditItem
+          label="Ваше текущее фото профиля"
+          id="field-avatar"
+          rows={1}
+          name="avatar"
+          value={editState.values.avatar ?? ""}
+          onChange={(e) => handleInput("avatar", e.currentTarget.value)}
+          placeholder="Добавьте ссылку на ваше фото.."
+        />
+        
+      </div>
       <AdminProfileEditItem
         label="Ваше имя"
         id="field-firstname"
@@ -56,28 +55,7 @@ export const AdminProfileEdit = (props: AdminProfileEdit) => {
         maxSigns={20}
       />
 
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <AdminProfileEditItem
-          label="Ваше текущее фото профиля"
-          id="field-avatar"
-          rows={1}
-          name="avatar"
-          value={editState.values.avatar ?? ""}
-          onChange={(e) => handleInput("avatar", e.currentTarget.value)}
-          placeholder="Добавьте ссылку на ваше фото.."
-        />
-        {/* <Input
-          id="userpic"
-          placeholder="добавьте ваше фото.."
-          type="file"
-          label="Добавьте ваше фото"
-          className={styles.authInputLabel}
-          classInput={styles.authInput}
-          containerClass={styles.authInput}
-          onChange={onUploadFile}
-          accept="image/*"
-        /> */}
-      </div>
+      
 
       <AdminProfileEditItem
         label="Текущий статус"

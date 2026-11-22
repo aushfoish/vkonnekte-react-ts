@@ -8,6 +8,8 @@ export const UserProfileSchema = z.object({
   lastname: z.string(),
   bio: z.string().nullable(),
   avatar: z.string().nullable(),
+  avatar_main_page: z.string().nullable(),
+  avatar_mini_50: z.string().nullable(),
   birthday: z.string().nullable(),
   country: z.string().nullable(),
   city: z.string().nullable(),

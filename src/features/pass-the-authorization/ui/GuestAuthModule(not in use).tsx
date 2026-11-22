@@ -3,11 +3,9 @@
 // import { useEffect, useState } from "react";
 // import { handleFileReader } from "@/shared/lib/file/useFileReader";
 // import styles from "./Auth.module.scss";
-
 // interface AuthorizationModuleProps {
 //   onClose: () => void;
 // }
-
 // export const GuestAuthMode = (props: AuthorizationModuleProps) => {
 //   const { onClose } = props;
 //   const [username, setUsername] = useState("");
@@ -27,23 +25,22 @@
 //       onClose();
 //     }
 //   }, [authCheck, onClose]);
-
-//   const onUploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setPicUploading(true);
-//     const userpicUrl = await handleFileReader(e, "jpg", 40, 40);
-//     if (typeof userpicUrl === "string") {
-//       setUserpic(userpicUrl);
-//       if (error) setError(false);
-//     } else if (userpicUrl === false) {
-//       setError(true);
-//       setNameError(
-//         "Недопустимый формат или размер. Допустимы только jpg/png файлы не более 2 мб",
-//       );
-//       setPicUploading(false);
-//       setUserpic("");
-//     }
-//     setPicUploading(false);
-//   };
+  // const onUploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setPicUploading(true);
+  //   const userpicUrl = await handleFileReader(e, "jpg", 40, 40);
+  //   if (typeof userpicUrl === "string") {
+  //     setUserpic(userpicUrl);
+  //     if (error) setError(false);
+  //   } else if (userpicUrl === false) {
+  //     setError(true);
+  //     setNameError(
+  //       "Недопустимый формат или размер. Допустимы только jpg/png файлы не более 2 мб",
+  //     );
+  //     setPicUploading(false);
+  //     setUserpic("");
+  //   }
+  //   setPicUploading(false);
+  // };
 //   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 //     setUsername(e.currentTarget.value);
 //     if (error) {
@@ -64,7 +61,6 @@
 //       onClose();
 //     }
 //   };
-
 //   return (
 //     <>
 //       <form className={styles.authForm} onSubmit={handleSubmit}>
