@@ -18,6 +18,8 @@ export const AdminProfileTable = () => {
         lastname={profile.lastname}
         bio={profile.bio}
         avatar={profile.avatar}
+        avatar_main_page={profile.avatar_main_page}
+        avatar_mini_50={profile.avatar_mini_50}
         city={profile.city}
         workplace={profile.workplace}
         country={profile.country}

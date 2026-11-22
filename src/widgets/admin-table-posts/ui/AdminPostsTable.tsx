@@ -35,7 +35,7 @@ export const AdminPostsTable = () => {
             {
               firstname: post.author.firstname,
               lastname: post.author.lastname,
-              avatar: post.author.avatar
+              avatar_mini_50: post.author.avatar_mini_50
             }
           )}
         />

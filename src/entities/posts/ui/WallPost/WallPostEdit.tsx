@@ -28,7 +28,7 @@ export const WallPostEdit = React.memo((props: EditCardProps) => {
     >
       <PostAuthorPic
         authorId={author_id}
-        src={author.avatar ? author.avatar : placeholder}
+        src={author.avatar_mini_50 ? author.avatar_mini_50 : placeholder}
         alt={`Фотография пользователя ${author.firstname} ${author.lastname}`}
       />
 

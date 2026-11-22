@@ -20,7 +20,7 @@ export const PostComment = (props: PostCommProps) => {
     <div className={styles.postGenuinely} id={String(id)}>
       <PostAuthorPic
         authorId={author_id}
-        src={author.avatar ? author.avatar : placeholder}
+        src={author.avatar_mini_50 ? author.avatar_mini_50 : placeholder}
         alt={`Фотография пользователя ${author.firstname} ${author.lastname}`}
       />
 
