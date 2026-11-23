@@ -1,6 +1,6 @@
 # Vkonnekte — Социальная сеть
 
-[👉 Ссылка на живой деплой ]((https://vkonnekte.vercel.app/profile/c849ba0e-1a02-4d1b-8042-01d801e3c7b1))
+[👉 Ссылка на живой деплой ]([(https://vkonnekte.vercel.app/profile/c849ba0e-1a02-4d1b-8042-01d801e3c7b1)])
 
 ---
 ## Архитектура
