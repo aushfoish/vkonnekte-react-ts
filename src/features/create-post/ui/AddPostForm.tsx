@@ -1,5 +1,13 @@
-const GraffityModal = lazy(() => import('@/features/create-graffity').then(module => ({default: module.GraffityModal})))
-const ModalWindow = lazy(() => import('@/shared/ui/ModalWindow/ModalWindow').then(module => ({default: module.ModalWindow})))
+const GraffityModal = lazy(() =>
+  import("@/features/create-graffity").then((module) => ({
+    default: module.GraffityModal,
+  })),
+);
+const ModalWindow = lazy(() =>
+  import("@/shared/ui/ModalWindow/ModalWindow").then((module) => ({
+    default: module.ModalWindow,
+  })),
+);
 import { Input } from "@/shared/ui";
 import { AnimatePresence, motion } from "framer-motion";
 import { lazy, useState } from "react";
@@ -7,36 +15,36 @@ import { Attachments } from "./Attachments";
 import styles from "./CreatePost.module.scss";
 import { useSendPost } from "@/entities/posts/model/posts/useSendPost";
 import { useParams } from "react-router-dom";
+import { PostSchema } from "@/shared/api/schemas/wallFormSchema";
 
 export const AddPostForm = () => {
   const [modalOpened, setModalOpened] = useState(false);
   const [inputPost, setInputPost] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const { mutate: sendPost, isPending } = useSendPost();
-  const {userId} = useParams()
+  const { userId } = useParams();
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!inputPost.trim()) {
-      alert(
-        "ты ни пост не чирканул, ни мемчик не забодяжил, ни граффити не намазал, но пост пытаешься отправить, ты ок вообще?",
-      );
-      return;
+    e?.preventDefault();
+    const result = PostSchema.safeParse({ inputPost });
+    if (!result.success) {
+      setError(result.error.issues[0].message);
+    } else {
+      if (userId) {
+        sendPost(
+          {
+            content: inputPost,
+            contentPicture: "",
+            wallId: userId,
+          },
+          {
+            onSuccess: () => {
+              setInputPost("");
+            },
+          },
+        );
+      }
     }
-
-    if (userId) 
-    {sendPost(
-      {
-        content: inputPost,
-        contentPicture: "",
-        wallId: userId
-      },
-      {
-        onSuccess: () => {
-          setInputPost("");
-        },
-      },
-    );
-  }
   };
 
   return (
@@ -51,6 +59,17 @@ export const AddPostForm = () => {
             }
             id="canvas"
             label="Ваше граффити на стену Романа Саныча"
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {error && (
+          <ModalWindow
+            classname={styles.warning}
+            onCloseModal={() => setError(null)}
+            children={<p className={styles.error}>{error}</p>}
+            id="error-message"
+            label="Ошибка при отправке поста"
           />
         )}
       </AnimatePresence>
@@ -73,7 +92,7 @@ export const AddPostForm = () => {
         />
         <AnimatePresence>
           <Attachments
-          isLoading={isPending}
+            isLoading={isPending}
             setCanvasOpen={() => {
               if (modalOpened === false) setModalOpened(true);
             }}
