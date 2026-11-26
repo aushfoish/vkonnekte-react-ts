@@ -22,6 +22,8 @@ export const Attachments = (props: AttachmentsProps) => {
       <Button type="submit" className={styles.post} isLoading={isLoading} children="Опубликовать" />
       <fieldset className={styles.postAttachments} aria-label="Вложения к посту">
         <AudioButton
+          title="Нарисовать граффити"
+          className={styles.canvas}
           type="button"
           id="canvas"
           children={
@@ -42,6 +44,8 @@ export const Attachments = (props: AttachmentsProps) => {
           ariaLabel="Открыть холст для рисования"
         />
         <AudioButton
+          title="Отправить изображение"
+          className={styles.picture}
           type="button"
           id="picture"
           children={

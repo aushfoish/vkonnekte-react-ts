@@ -15,6 +15,47 @@
       width: 100%;
     }
   }
+  .canvas {
+    background-color: transparent;
+    font-size: 12px;
+    color: #a8a8a8;
+    display: flex;
+    border-style: none;
+    color: var(--color-blue-300);
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease;
+  }
+  .canvas:hover {
+    color: rgb(206, 39, 228);
+  }
+
+  .picture {
+    background-color: transparent;
+    font-size: 12px;
+    color: #a8a8a8;
+    display: flex;
+    border-style: none;
+    color: var(--color-blue-300);
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease;
+  }
+  .picture:hover {
+    color: rgb(45, 129, 226);
+  }
 
   .postAttachmentsButtons {
     display: flex;

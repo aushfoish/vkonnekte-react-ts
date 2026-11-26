@@ -49,6 +49,27 @@
   }
 }
 
+
+  .send {
+  background-color: transparent;
+  font-size: 12px;
+  color: #A8A8A8;
+  display: flex;
+  border-style: none;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  
+}
+.send:hover {
+    color: var(--color-blue-100);
+  }
+
+
 .error {
   display: flex;
   flex-direction: row;

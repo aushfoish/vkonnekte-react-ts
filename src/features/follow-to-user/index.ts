@@ -1,1 +1,1 @@
-export { Follow } from "./ui/Follow";
+export { EditProfile } from "./ui/EditProfile";

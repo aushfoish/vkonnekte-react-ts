@@ -8,6 +8,7 @@ import styles from "./AccountWall.module.scss";
 import { useFetchComments } from "@/entities/posts/model/comments/useComment";
 import { PostComment } from "@/entities/posts/ui/WallPost/PostComment";
 import { useDeleteComm } from "@/entities/posts/model/comments/useDeleteComment";
+import { formatDate } from "@/entities/posts/lib/FormatDate";
 
 interface props {
   id: number
@@ -47,7 +48,7 @@ export const CommentariesContent = (props: props) => {
             onDelete={() => deleteComment(post.id)}
             id={post.id}
             content={post.content}
-            date={post.date}
+            date={formatDate(post.date)}
             author_id={post.author_id}
             author={post.author}
           />

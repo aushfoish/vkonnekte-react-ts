@@ -37,7 +37,7 @@ export const AccountGallery = () => {
   ];
   return (
     <div className={styles.gallery}>
-      <Micro_header children={`${nyanCatArray.length} фотографии`} />
+      <Micro_header children={`Другие фото ${pageOwnerDeclensed}`} />
 
       <div className={styles.imageRow}>
         {nyanCatArray.map((img) => (

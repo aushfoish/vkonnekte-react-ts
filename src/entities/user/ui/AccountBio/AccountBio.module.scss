@@ -1,8 +1,14 @@
+.profileNameContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .userName {
   display: grid;
-  border-bottom: 1px solid;
   padding-bottom: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-color: #d4d8e2cd;
 }
 
