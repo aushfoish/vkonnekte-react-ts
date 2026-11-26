@@ -2,7 +2,6 @@ import { useId, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import {
   AccountBio,
-  AccountGallery,
   AccountPersonal,
   AccountPersonalHidden,
 } from "@/entities/user";
@@ -52,7 +51,6 @@ export const UserInfo = () => {
         {isOpen === true && <AccountPersonalHidden id={infoID} />}
       </AnimatePresence>
 
-      <AccountGallery />
 
       {userId && <AccountWall wallId={userId} />}
     </div>

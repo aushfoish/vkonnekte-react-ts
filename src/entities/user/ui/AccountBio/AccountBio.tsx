@@ -1,3 +1,4 @@
+import { EditProfile } from "@/features/follow-to-user/ui/EditProfile";
 import {
   useSelectBio,
   useSelectFirstname,
@@ -19,9 +20,12 @@ export const AccountBio = () => {
 
   if (fullname || bio)
     return (
-      <div className={styles.userName}>
-        <h2 className={styles.accountName}>{fullname}</h2>
-        <p className={styles.bio}>{bio}</p>
+      <div className={styles.profileNameContainer}>
+        <div className={styles.userName}>
+          <h2 className={styles.accountName}>{fullname}</h2>
+          <p className={styles.bio}>{bio}</p>
+        </div>
+        <EditProfile />
       </div>
     );
 };

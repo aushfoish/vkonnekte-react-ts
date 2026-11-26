@@ -6,6 +6,7 @@ import { useWallWebsocket } from "@/widgets/account-wall/model/useWallWebsocket"
 import { SkeletonWall } from "@/shared/ui/SkeletonMainPage/SkeletonWall";
 import { WallFetchError } from "@/widgets/account-wall/ui/WallFetchError";
 import { useDeletePost } from "@/entities/posts/model/posts/useDeletePost";
+import { formatDate } from "@/entities/posts/lib/FormatDate";
 
 interface WallContentProps {
   wallId: string;
@@ -44,7 +45,7 @@ export const WallContent = (props: WallContentProps) => {
             onDelete={() => deletePost(post.id)}
             id={post.id}
             content={post.content}
-            date={post.date}
+            date={post.date ? formatDate(post.date) : "--/--/--"}
             imageContentSrc={post.imageContentSrc}
             author_id={post.author_id}
             wall_id={post.wall_id}

@@ -10,6 +10,7 @@ export const PlayerControls = () => {
     return (
         <div className={styles.controlButtons}> 
                   <AudioButton 
+                    className="className"
                     ariaLabel="воспроизведение/пауза"
                     children={<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
                       <g clipPath="url(#clip0_308_38)">
@@ -24,6 +25,7 @@ export const PlayerControls = () => {
                     id='play-pause'
                   />
                   <AudioButton 
+                  className="className"
                     ariaLabel="предыдущая композиция"
                     children={<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
                       <g clipPath="url(#clip0_308_48)">
@@ -38,6 +40,7 @@ export const PlayerControls = () => {
                     id='previous'
                   />
                   <AudioButton 
+                  className="className"
                       ariaLabel="следующая композиция"
                       children={<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" onClick={nextTrack}>
                       <g clipPath="url(#clip0_308_53)">
